@@ -1,5 +1,6 @@
 package com.alenasoft;
 
+import com.alenasoft.exceptions.FrameNotExistsException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -33,5 +34,11 @@ public interface FrameOrganizer {
     }
 
     return frames;
+  }
+
+  static Frame getByIndex(int index, List<Frame> frames) {
+    return frames.stream().filter(f -> f.getIndex() == index)
+        .findFirst()
+        .orElseThrow(FrameNotExistsException::new);
   }
 }
