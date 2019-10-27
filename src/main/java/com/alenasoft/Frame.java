@@ -6,13 +6,19 @@ import java.util.stream.Collectors;
 public class Frame {
 
   private int index;
+  private int indexFault;
   private int[] points;
   private int score;
 
   public Frame(int index, int[] points) {
+    this(index, points, -1);
+  }
+
+  public Frame(int index, int[] points, int indexFault) {
     this.index = index;
     this.points = points;
     this.score = 0;
+    this.indexFault = indexFault;
   }
 
   public int getIndex() {
@@ -32,11 +38,22 @@ public class Frame {
       return String.format("%2d%2s", this.points[0], "/");
     }
 
-    return Arrays.stream(this.points)
-        .mapToObj(p -> (p == 10)
-            ? String.format("%2s", "X")
-            : String.format("%2d", p))
-        .collect(Collectors.joining(""));
+    String pointsAsString = "";
+    for (int i = 0; i < this.points.length; i++) {
+      if (this.points[i] == 10) {
+        pointsAsString = pointsAsString.concat(String.format("%2s", "X"));
+        continue;
+      }
+
+      if (this.points[i] == 0 && i == indexFault) {
+        pointsAsString = pointsAsString.concat(String.format("%2s", "F"));
+        continue;
+      }
+
+      pointsAsString = pointsAsString.concat(String.format("%2d", this.points[i]));
+    }
+
+    return pointsAsString;
   }
 
   @Override

@@ -4,22 +4,17 @@ import com.alenasoft.exceptions.FrameNotExistsException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public interface FrameOrganizer {
 
   static List<Frame> organizeScores(List<String> inputPoints) {
-
-    List<Integer> scores = inputPoints.stream()
-        .map(ScoreParser::parseToNumericScore)
-        .collect(Collectors.toList());
-
-    Iterator<Integer> iterator = scores.iterator();
+    Iterator<String> iterator = inputPoints.iterator();
     List<Frame> frames = new ArrayList<>();
     int index = 1;
 
     while (iterator.hasNext()) {
-      int currentValue = iterator.next();
+      String currentInput = iterator.next();
+      int currentValue = ScoreParser.parseToNumericScore(currentInput);
 
       if (currentValue == 10 && index != 10) {
         int[] points = {currentValue};
@@ -29,12 +24,20 @@ public interface FrameOrganizer {
       }
 
       if (index != 10) {
-        int[] points = {currentValue, iterator.next()};
-        frames.add(new Frame(index, points));
+        int[] points = {currentValue, ScoreParser.parseToNumericScore(iterator.next())};
+        if ("F".equals(currentInput)) {
+          frames.add(new Frame(index, points, 0));
+        } else {
+          frames.add(new Frame(index, points));
+        }
         index++;
       } else {
-        int[] points = {currentValue, iterator.next(), iterator.next()};
-        frames.add(new Frame(index, points));
+        int[] points = {currentValue, ScoreParser.parseToNumericScore(iterator.next()), ScoreParser.parseToNumericScore(iterator.next())};
+        if ("F".equals(currentInput)) {
+          frames.add(new Frame(index, points, 0));
+        } else {
+          frames.add(new Frame(index, points));
+        }
         index++;
       }
     }
