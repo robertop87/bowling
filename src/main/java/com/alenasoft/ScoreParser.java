@@ -2,7 +2,7 @@ package com.alenasoft;
 
 import java.util.Objects;
 
-public interface ScoreUtils {
+public interface ScoreParser {
 
   String warningTemplate = "WARNING: Invalid Score found [%s], assign [0] as score";
   int minScore = 0;
