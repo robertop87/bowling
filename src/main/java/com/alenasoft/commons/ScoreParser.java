@@ -6,32 +6,29 @@ import java.util.Objects;
 public interface ScoreParser {
 
   String warningTemplate = "WARNING: Invalid Score found [%s], this invalidates the PlayerGame";
-  int minScore = 0;
-  int maxScore = 10;
-  String fault = "F";
 
   static int parseToNumericScore(String inputScore)
       throws InvalidInputScoreException {
     if (Objects.isNull(inputScore)) {
       fireInvalidInputException("null");
-      return minScore;
+      return Constants.minPinfall;
     }
 
     final String sanitizedInputScore = inputScore.trim().toUpperCase();
-    if (fault.equals(sanitizedInputScore)) {
-      return minScore;
+    if (Constants.faultChar.equals(sanitizedInputScore)) {
+      return Constants.minPinfall;
     }
 
     try {
       final int score = Integer.parseInt(sanitizedInputScore);
-      if (score < minScore || score > maxScore) {
+      if (score < Constants.minPinfall || score > Constants.maxPinfall) {
         fireInvalidInputException(sanitizedInputScore);
       }
       return score;
     } catch (NumberFormatException exception) {
       fireInvalidInputException(sanitizedInputScore);
     }
-    return minScore;
+    return Constants.minPinfall;
   }
 
   static void fireInvalidInputException(String inputScore)

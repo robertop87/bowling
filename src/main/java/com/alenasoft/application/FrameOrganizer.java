@@ -2,6 +2,7 @@ package com.alenasoft.application;
 
 import com.alenasoft.application.exceptions.FrameNotExistsException;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.commons.Constants;
 import com.alenasoft.commons.ScoreParser;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,14 +20,14 @@ public interface FrameOrganizer {
       String currentInput = iterator.next();
       int currentValue = ScoreParser.parseToNumericScore(currentInput);
 
-      if (currentValue == 10 && index != 10) {
+      if (currentValue == Constants.strikeValue && index != Constants.maxFramesLength) {
         String[] points = { currentInput };
         frames.add(new Frame(index, points));
         index++;
         continue;
       }
 
-      if (index != 10) {
+      if (index != Constants.maxFramesLength) {
         String[] points = {currentInput, iterator.next()};
         frames.add(new Frame(index, points));
         index++;

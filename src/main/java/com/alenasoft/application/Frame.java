@@ -1,6 +1,7 @@
 package com.alenasoft.application;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.commons.Constants;
 import com.alenasoft.commons.ScoreParser;
 import java.util.Arrays;
 
@@ -14,13 +15,13 @@ public class Frame {
   public Frame(int index, String[] stringPoints) {
     this.index = index;
     this.stringPoints = stringPoints;
-    this.score = 0;
+    this.score = Constants.minPinfall;
     this.points = Arrays.stream(this.stringPoints)
         .mapToInt(p -> {try {
           return ScoreParser.parseToNumericScore(p);
           } catch (InvalidInputScoreException e) {
-          return -1;
-        }}).filter(p -> p != -1)
+          return Constants.errorValue;
+        }}).filter(p -> p != Constants.errorValue)
         .toArray();
   }
 
@@ -33,18 +34,18 @@ public class Frame {
   }
 
   public String pointsToPrint() throws InvalidInputScoreException {
-    if (this.stringPoints.length == 1 && ScoreParser.parseToNumericScore(this.stringPoints[0]) == 10) {
-      return String.format("%4s", "X");
+    if (this.stringPoints.length == 1 && ScoreParser.parseToNumericScore(this.stringPoints[0]) == Constants.strikeValue) {
+      return String.format("%4s", Constants.strike);
     }
 
-    if (this.stringPoints.length == 2 && this.sumOfPoints() == 10) {
-      return String.format("%2s%2s", this.stringPoints[0], "/");
+    if (this.stringPoints.length == 2 && this.sumOfPoints() == Constants.maxPinfall) {
+      return String.format("%2s%2s", this.stringPoints[0], Constants.spare);
     }
 
     String pointsAsString = "";
     for (int i = 0; i < this.stringPoints.length; i++) {
-      if (ScoreParser.parseToNumericScore(this.stringPoints[i]) == 10) {
-        pointsAsString = pointsAsString.concat(String.format("%2s", "X"));
+      if (ScoreParser.parseToNumericScore(this.stringPoints[i]) == Constants.maxPinfall) {
+        pointsAsString = pointsAsString.concat(String.format("%2s", Constants.strike));
         continue;
       }
 
@@ -68,7 +69,7 @@ public class Frame {
           try {
             return ScoreParser.parseToNumericScore(p);
           } catch (InvalidInputScoreException e) {
-            return 0;
+            return Constants.errorValue;
           }
         }).sum();
   }
