@@ -24,6 +24,12 @@ and pass a file path as parameter
 
   `$ java -jar bowling-0.1.jar /path/to/bowling-data.txt`
   
+#### Quick Linux
+In order to build and run the base tests cases you can run the next command (tested only on linux terminal):
+
+  `mvn clean package && java -jar target/bowling-0.1.jar ./bowling-data.txt`
+
+  
 ## Test cases
 
 The file should be composed by rows with player name and points as the next example:
@@ -76,5 +82,47 @@ Carl 10
 Carl 10
 Carl 10
 Carl 10
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Failed F
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
+Zero 0
 
 ```
