@@ -26,7 +26,5 @@ public class PlayerGameTest {
 
     // 1 is in the latest position
     assertEquals(1, scores.get(scores.size()-1).intValue());
-
-    System.out.println(scores);
   }
 }
