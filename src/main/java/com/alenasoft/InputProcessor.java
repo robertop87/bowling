@@ -20,7 +20,10 @@ public class InputProcessor {
       return;
     }
 
-    String sanitized = nextLine.trim().toUpperCase();
+    String sanitized = nextLine.trim().toUpperCase()
+        .replaceAll("\\t", " ") // Replace tabs with space
+        .replaceAll("(\\s)+", " "); // Normalize spaces
+
     String[] values = sanitized.split(" ");
     if (values.length < 1 || values.length > 2) {
       System.err.println(String.format("Invalid row input: [%s] cannot processed"));

@@ -22,12 +22,17 @@ This will generate the executable target/bowling-0.1.jar
 This is a JAR application and it's designed to run on console, to execute use the next command
 and pass a file path as parameter
 
-  `$ java -jar bowling-0.1.jar /path/to/bowling-data.txt`
+  `$ java -jar bowling-0.1.jar /path/to/bowling-data-tab-separated.txt`
+  
+### About the txt file
+- The file should contains only valid formatted rows (Name and Value)
+- The row could be tab-separated or space-separated
+  (Check both test files bowling-data-tab-separated.txt & bowling-data-space-separated.txt)
   
 #### Quick Build/Run tip for Linux
 In order to build and run the base tests cases you can run the next command (tested only on linux terminal):
 
-  `mvn clean package && java -jar target/bowling-0.1.jar ./bowling-data.txt`
+  `mvn clean package && java -jar target/bowling-0.1.jar ./bowling-data-tab-separated.txt`
 
   
 ## Test cases
