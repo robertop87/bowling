@@ -23,6 +23,13 @@ public class Frame {
     return this.points;
   }
 
+  public String pointsToPrint() {
+    String extraTab = this.points.length == 1 ? String.format("%2s", " ") : "";
+    return extraTab.concat(Arrays.stream(this.points)
+        .mapToObj(p -> String.format("%2d", p))
+        .collect(Collectors.joining("")));
+  }
+
   @Override
   public String toString() {
     String formatedPoints = Arrays.stream(this.points)

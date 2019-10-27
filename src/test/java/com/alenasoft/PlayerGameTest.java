@@ -27,4 +27,18 @@ public class PlayerGameTest {
     // 1 is in the latest position
     assertEquals(1, scores.get(scores.size()-1).intValue());
   }
+
+  @Test
+  public void testVisualGameWithSortedScores() {
+    // Jeff player input data taken from Requirements Document
+    List<String> inputScores =
+        Arrays.asList("10", "7", "3", "9", "0",
+            "10", "0", "8", "8", "2", "F", "6",
+            "10", "10", "10", "8", "1");
+
+    final PlayerGame playerGame = new PlayerGame("Jeff", inputScores);
+
+    // Just to verifica visually the formated output
+    System.out.println(playerGame);
+  }
 }
