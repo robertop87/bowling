@@ -18,14 +18,14 @@ public class PlayerGameTest {
 
     final PlayerGame playerGame = new PlayerGame("Jeff", inputScores);
 
-    final List<Integer> scores = playerGame.getScores();
+    final List<String> scores = playerGame.getInputScores();
 
     // Position with value F should be 0 as score value
     // F is in 10 indexed position
-    assertEquals(0, scores.get(10).intValue());
+    assertEquals("F", scores.get(10));
 
     // 1 is in the latest position
-    assertEquals(1, scores.get(scores.size()-1).intValue());
+    assertEquals("1", scores.get(scores.size()-1));
   }
 
   @Test

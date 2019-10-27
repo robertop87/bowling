@@ -11,12 +11,12 @@ public class FrameOrganizerTest {
   @Test
   public void testOrganizeScoresForJeffCase() {
     // Jeff player input data taken from Requirements Document
-    List<Integer> points =
-        Arrays.asList(10, 7, 3, 9, 0,
-            10, 0, 8, 8, 2, 0, 6,
-            10, 10, 10, 8, 1);
+    List<String> inputPoints =
+        Arrays.asList("10", "7", "3", "9", "0",
+            "10", "0", "8", "8", "2", "F", "6",
+            "10", "10", "10", "8", "1");
 
-    final List<Frame> frames = FrameOrganizer.organizeScores(points);
+    final List<Frame> frames = FrameOrganizer.organizeScores(inputPoints);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());
@@ -34,10 +34,10 @@ public class FrameOrganizerTest {
   @Test
   public void testOrganizeScoresForJohnCase() {
     // John player input data taken from Requirements Document
-    List<Integer> points =
-        Arrays.asList(3, 7, 6, 3, 10, 8, 1, 10, 10, 9, 0, 7, 3, 4, 4, 10, 9, 0);
+    List<String> inputPoints =
+        Arrays.asList("3", "7", "6", "3", "10", "8", "1", "10", "10", "9", "0", "7", "3", "4", "4", "10", "9", "0");
 
-    final List<Frame> frames = FrameOrganizer.organizeScores(points);
+    final List<Frame> frames = FrameOrganizer.organizeScores(inputPoints);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());
@@ -54,10 +54,10 @@ public class FrameOrganizerTest {
   @Test
   public void testOrganizeScoresForPerfectGameCarlCase() {
     // John player input data taken from Requirements Document
-    List<Integer> points =
-        Arrays.asList(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+    List<String> inputPoints =
+        Arrays.asList("10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10");
 
-    final List<Frame> frames = FrameOrganizer.organizeScores(points);
+    final List<Frame> frames = FrameOrganizer.organizeScores(inputPoints);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());

@@ -4,10 +4,16 @@ import com.alenasoft.exceptions.FrameNotExistsException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface FrameOrganizer {
 
-  static List<Frame> organizeScores(List<Integer> scores) {
+  static List<Frame> organizeScores(List<String> inputPoints) {
+
+    List<Integer> scores = inputPoints.stream()
+        .map(ScoreParser::parseToNumericScore)
+        .collect(Collectors.toList());
+
     Iterator<Integer> iterator = scores.iterator();
     List<Frame> frames = new ArrayList<>();
     int index = 1;

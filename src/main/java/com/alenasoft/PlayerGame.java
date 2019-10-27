@@ -8,8 +8,6 @@ public class PlayerGame {
 
   final private String name;
   final private List<String> inputScores;
-
-  private List<Integer> scores;
   private List<Frame> frames;
 
   public PlayerGame(String name) {
@@ -23,19 +21,12 @@ public class PlayerGame {
   }
 
   public void calculateScores() {
-    this.scores = this.inputScores.stream()
-        .map(ScoreParser::parseToNumericScore)
-        .collect(Collectors.toList());
-    this.frames = FrameOrganizer.organizeScores(this.scores);
+    this.frames = FrameOrganizer.organizeScores(this.inputScores);
     ScoreComputer.computeScore(this.frames);
   }
 
   public List<String> getInputScores() {
     return this.inputScores;
-  }
-
-  public List<Integer> getScores() {
-    return this.scores;
   }
 
   public String getName() {
