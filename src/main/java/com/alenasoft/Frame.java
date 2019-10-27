@@ -26,7 +26,7 @@ public class Frame {
   public String pointsToPrint() {
     String extraTab = this.points.length == 1 ? String.format("%2s", " ") : "";
     return extraTab.concat(Arrays.stream(this.points)
-        .mapToObj(p -> String.format("%2d", p))
+        .mapToObj(p -> (p == 10) ? String.format("%2s", "X") : String.format("%2d", p))
         .collect(Collectors.joining("")));
   }
 
