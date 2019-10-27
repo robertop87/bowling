@@ -1,5 +1,6 @@
 package com.alenasoft;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -7,32 +8,38 @@ public class PlayerGame {
 
   final private String name;
   final private List<String> inputScores;
-  final private List<Integer> scores;
-  final private List<Frame> frames;
+
+  private List<Integer> scores;
+  private List<Frame> frames;
+
+  public PlayerGame(String name) {
+    this(name, new ArrayList<>());
+  }
 
   public PlayerGame(String name, List<String> inputScores) {
     this.name = name;
     this.inputScores = inputScores;
-    this.scores = inputScores.stream()
+    this.calculateScores();
+  }
+
+  public void calculateScores() {
+    this.scores = this.inputScores.stream()
         .map(ScoreParser::parseToNumericScore)
         .collect(Collectors.toList());
     this.frames = FrameOrganizer.organizeScores(this.scores);
     ScoreComputer.computeScore(this.frames);
   }
 
+  public List<String> getInputScores() {
+    return this.inputScores;
+  }
+
   public List<Integer> getScores() {
     return this.scores;
   }
 
-  private String frameRowToPrint() {
-    String rowName = "Frame";
-    String frameNumbers =
-        this.frames
-            .stream()
-            .map(f -> String.format("%5d", f.getIndex()))
-            .collect(Collectors.joining("\t\t"));
-
-    return String.join("\t\t", rowName, frameNumbers);
+  public String getName() {
+    return this.name;
   }
 
   private String pinfallsRowToPrint() {
