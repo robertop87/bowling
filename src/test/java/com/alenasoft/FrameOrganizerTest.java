@@ -9,7 +9,7 @@ import org.junit.Test;
 public class FrameOrganizerTest {
 
   @Test
-  public void testOrganizeScores() {
+  public void testOrganizeScoresForJeffCase() {
     // Jeff player input data taken from Requirements Document
     List<Integer> points =
         Arrays.asList(10, 7, 3, 9, 0,
@@ -29,7 +29,45 @@ public class FrameOrganizerTest {
     assertEquals(1, frames.get(4 - 1).getPoints().length);
     assertEquals(1, frames.get(8 - 1).getPoints().length);
     assertEquals(1, frames.get(9 - 1).getPoints().length);
+  }
 
-    System.out.println(FrameOrganizer.organizeScores(points));
+  @Test
+  public void testOrganizeScoresForJohnCase() {
+    // John player input data taken from Requirements Document
+    List<Integer> points =
+        Arrays.asList(3, 7, 6, 3, 10, 8, 1, 10, 10, 9, 0, 7, 3, 4, 4, 10, 9, 0);
+
+    final List<Frame> frames = FrameOrganizer.organizeScores(points);
+
+    // Maximum number of frames should be 10
+    assertEquals(10, frames.size());
+
+    //Latest Frame should have 3 items in points
+    assertEquals(3, frames.get(frames.size() - 1).getPoints().length);
+
+    // Frames 3, 5 &  6 should have only one point
+    assertEquals(1, frames.get(3 - 1).getPoints().length);
+    assertEquals(1, frames.get(5 - 1).getPoints().length);
+    assertEquals(1, frames.get(6 - 1).getPoints().length);
+  }
+
+  @Test
+  public void testOrganizeScoresForPerfectGameCarlCase() {
+    // John player input data taken from Requirements Document
+    List<Integer> points =
+        Arrays.asList(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+
+    final List<Frame> frames = FrameOrganizer.organizeScores(points);
+
+    // Maximum number of frames should be 10
+    assertEquals(10, frames.size());
+
+    //Latest Frame should have 3 items in points
+    assertEquals(3, frames.get(frames.size() - 1).getPoints().length);
+
+    // All Frames should have only one point, but the latest
+    for (int i = 0; i < 9; i++) {
+      assertEquals(1, frames.get(i).getPoints().length);
+    }
   }
 }
