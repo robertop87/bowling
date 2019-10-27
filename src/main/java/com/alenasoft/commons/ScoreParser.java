@@ -7,8 +7,7 @@ public interface ScoreParser {
 
   String warningTemplate = "WARNING: Invalid Score found [%s], this invalidates the PlayerGame";
 
-  static int parseToNumericScore(String inputScore)
-      throws InvalidInputScoreException {
+  static int parseToNumericScore(String inputScore) throws InvalidInputScoreException {
     if (Objects.isNull(inputScore)) {
       fireInvalidInputException("null");
       return Constants.minPinfall;
@@ -31,8 +30,7 @@ public interface ScoreParser {
     return Constants.minPinfall;
   }
 
-  static void fireInvalidInputException(String inputScore)
-      throws InvalidInputScoreException {
+  static void fireInvalidInputException(String inputScore) throws InvalidInputScoreException {
     System.err.println(String.format(warningTemplate, inputScore));
     throw new InvalidInputScoreException(String.format(warningTemplate, inputScore));
   }

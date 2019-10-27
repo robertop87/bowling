@@ -10,8 +10,7 @@ import java.util.List;
 
 public interface FrameOrganizer {
 
-  static List<Frame> organize(List<String> inputPoints)
-      throws InvalidInputScoreException {
+  static List<Frame> organize(List<String> inputPoints) throws InvalidInputScoreException {
     Iterator<String> iterator = inputPoints.iterator();
     List<Frame> frames = new ArrayList<>();
     int index = 1;
@@ -21,7 +20,7 @@ public interface FrameOrganizer {
       int currentValue = ScoreParser.parseToNumericScore(currentInput);
 
       if (currentValue == Constants.strikeValue && index != Constants.maxFramesLength) {
-        String[] points = { currentInput };
+        String[] points = {currentInput};
         frames.add(new Frame(index, points));
         index++;
         continue;
@@ -42,7 +41,9 @@ public interface FrameOrganizer {
   }
 
   static Frame getByIndex(int index, List<Frame> frames) {
-    return frames.stream().filter(f -> f.getIndex() == index)
+    return frames
+        .stream()
+        .filter(f -> f.getIndex() == index)
         .findFirst()
         .orElseThrow(FrameNotExistsException::new);
   }

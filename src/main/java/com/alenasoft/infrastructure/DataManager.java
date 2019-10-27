@@ -22,9 +22,12 @@ public class DataManager {
       return;
     }
 
-    String sanitized = nextLine.trim().toUpperCase()
-        .replaceAll("\\t", " ") // Replace tabs with space
-        .replaceAll("(\\s)+", " "); // Normalize spaces
+    String sanitized =
+        nextLine
+            .trim()
+            .toUpperCase()
+            .replaceAll("\\t", " ") // Replace tabs with space
+            .replaceAll("(\\s)+", " "); // Normalize spaces
 
     String[] values = sanitized.split(" ");
     if (values.length < 1 || values.length > 2) {
@@ -40,12 +43,10 @@ public class DataManager {
 
   @Override
   public String toString() {
-    return String.join("\n",
+    return String.join(
+        "\n",
         this.frameRowToPrint(),
-        this.playerGames
-            .stream()
-            .map(pg -> pg.toString())
-            .collect(Collectors.joining("\n")));
+        this.playerGames.stream().map(pg -> pg.toString()).collect(Collectors.joining("\n")));
   }
 
   private String frameRowToPrint() {
@@ -57,17 +58,18 @@ public class DataManager {
   }
 
   private void addOrUpdate(String playerName, String inputPoint) {
-    PlayerGame playerGame = this.findByPlayerName(playerName).orElseGet(() -> {
-      PlayerGame newPlayerGame = new PlayerGame(playerName);
-      this.playerGames.add(newPlayerGame);
-      return newPlayerGame;
-    });
+    PlayerGame playerGame =
+        this.findByPlayerName(playerName)
+            .orElseGet(
+                () -> {
+                  PlayerGame newPlayerGame = new PlayerGame(playerName);
+                  this.playerGames.add(newPlayerGame);
+                  return newPlayerGame;
+                });
     playerGame.getInputScores().add(inputPoint);
   }
 
   private Optional<PlayerGame> findByPlayerName(String playerName) {
-    return this.playerGames.stream()
-        .filter(pg -> playerName.equals(pg.getName()))
-        .findFirst();
+    return this.playerGames.stream().filter(pg -> playerName.equals(pg.getName())).findFirst();
   }
 }

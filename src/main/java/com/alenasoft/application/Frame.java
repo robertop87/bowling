@@ -16,13 +16,18 @@ public class Frame {
     this.index = index;
     this.stringPoints = stringPoints;
     this.score = Constants.minPinfall;
-    this.points = Arrays.stream(this.stringPoints)
-        .mapToInt(p -> {try {
-          return ScoreParser.parseToNumericScore(p);
-          } catch (InvalidInputScoreException e) {
-          return Constants.errorValue;
-        }}).filter(p -> p != Constants.errorValue)
-        .toArray();
+    this.points =
+        Arrays.stream(this.stringPoints)
+            .mapToInt(
+                p -> {
+                  try {
+                    return ScoreParser.parseToNumericScore(p);
+                  } catch (InvalidInputScoreException e) {
+                    return Constants.errorValue;
+                  }
+                })
+            .filter(p -> p != Constants.errorValue)
+            .toArray();
   }
 
   public int[] getPoints() {
@@ -34,7 +39,8 @@ public class Frame {
   }
 
   public String pointsToPrint() throws InvalidInputScoreException {
-    if (this.stringPoints.length == 1 && ScoreParser.parseToNumericScore(this.stringPoints[0]) == Constants.strikeValue) {
+    if (this.stringPoints.length == 1
+        && ScoreParser.parseToNumericScore(this.stringPoints[0]) == Constants.strikeValue) {
       return String.format("%4s", Constants.strike);
     }
 
@@ -65,12 +71,14 @@ public class Frame {
 
   public int sumOfPoints() {
     return Arrays.stream(this.stringPoints)
-        .mapToInt(p -> {
-          try {
-            return ScoreParser.parseToNumericScore(p);
-          } catch (InvalidInputScoreException e) {
-            return Constants.errorValue;
-          }
-        }).sum();
+        .mapToInt(
+            p -> {
+              try {
+                return ScoreParser.parseToNumericScore(p);
+              } catch (InvalidInputScoreException e) {
+                return Constants.errorValue;
+              }
+            })
+        .sum();
   }
 }

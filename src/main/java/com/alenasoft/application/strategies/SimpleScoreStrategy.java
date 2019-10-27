@@ -10,8 +10,10 @@ class SimpleScoreStrategy implements ScoreStrategy {
 
   @Override
   public void score(int frameIndex, List<Frame> frames) {
-    int score = (frameIndex == 1) ? Constants.minPinfall
-        : FrameOrganizer.getByIndex(frameIndex - 1, frames).getScore();
+    int score =
+        (frameIndex == 1)
+            ? Constants.minPinfall
+            : FrameOrganizer.getByIndex(frameIndex - 1, frames).getScore();
 
     Frame currentFrame = FrameOrganizer.getByIndex(frameIndex, frames);
     score += currentFrame.sumOfPoints();
