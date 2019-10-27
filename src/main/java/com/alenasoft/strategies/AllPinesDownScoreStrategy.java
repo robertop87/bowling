@@ -1,5 +1,8 @@
-package com.alenasoft;
+package com.alenasoft.strategies;
 
+import com.alenasoft.Frame;
+import com.alenasoft.FrameOrganizer;
+import com.alenasoft.ScoreStrategy;
 import java.util.List;
 
 public class AllPinesDownScoreStrategy implements ScoreStrategy {
