@@ -1,10 +1,13 @@
-package com.alenasoft;
+package com.alenasoft.strategies;
 
 import static org.junit.Assert.assertEquals;
 
-import com.alenasoft.strategies.StrikeScoreStrategy;
+import com.alenasoft.Frame;
+import com.alenasoft.FrameOrganizer;
+import com.alenasoft.ScoreStrategy;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class StrikeScoreStrategyTest {
@@ -19,7 +22,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(20, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    Assert.assertEquals(20, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
