@@ -24,10 +24,19 @@ public class Frame {
   }
 
   public String pointsToPrint() {
-    String extraTab = this.points.length == 1 ? String.format("%2s", " ") : "";
-    return extraTab.concat(Arrays.stream(this.points)
-        .mapToObj(p -> (p == 10) ? String.format("%2s", "X") : String.format("%2d", p))
-        .collect(Collectors.joining("")));
+    if (this.points.length == 1 && this.points[0] == 10) {
+      return String.format("%4s", "X");
+    }
+
+    if (this.points.length == 2 && this.sumOfPoints() == 10) {
+      return String.format("%2d%2s", this.points[0], "/");
+    }
+
+    return Arrays.stream(this.points)
+        .mapToObj(p -> (p == 10)
+            ? String.format("%2s", "X")
+            : String.format("%2d", p))
+        .collect(Collectors.joining(""));
   }
 
   @Override
