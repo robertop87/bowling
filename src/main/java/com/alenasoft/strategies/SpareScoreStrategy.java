@@ -1,6 +1,6 @@
 package com.alenasoft.strategies;
 
-public class SpareScoreStrategy extends AllPinesDownScoreStrategy {
+class SpareScoreStrategy extends AllPinesDownScoreStrategy {
 
   private static final int spareNextPointSize = 1;
 

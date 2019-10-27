@@ -5,7 +5,7 @@ import com.alenasoft.FrameOrganizer;
 import com.alenasoft.ScoreStrategy;
 import java.util.List;
 
-public class SimpleScoreStrategy implements ScoreStrategy {
+class SimpleScoreStrategy implements ScoreStrategy {
 
   @Override
   public void score(int frameIndex, List<Frame> frames) {

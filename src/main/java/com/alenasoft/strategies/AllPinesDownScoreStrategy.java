@@ -5,7 +5,7 @@ import com.alenasoft.FrameOrganizer;
 import com.alenasoft.ScoreStrategy;
 import java.util.List;
 
-public class AllPinesDownScoreStrategy implements ScoreStrategy {
+class AllPinesDownScoreStrategy implements ScoreStrategy {
 
   private int nextPointSize;
 

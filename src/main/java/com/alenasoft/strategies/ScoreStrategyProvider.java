@@ -1,8 +1,7 @@
-package com.alenasoft;
+package com.alenasoft.strategies;
 
-import com.alenasoft.strategies.SimpleScoreStrategy;
-import com.alenasoft.strategies.SpareScoreStrategy;
-import com.alenasoft.strategies.StrikeScoreStrategy;
+import com.alenasoft.Frame;
+import com.alenasoft.ScoreStrategy;
 
 public interface ScoreStrategyProvider {
 

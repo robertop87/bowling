@@ -1,6 +1,6 @@
 package com.alenasoft.strategies;
 
-public class StrikeScoreStrategy extends AllPinesDownScoreStrategy {
+class StrikeScoreStrategy extends AllPinesDownScoreStrategy {
 
   private static final int strikeNextPointSize = 2;
 
