@@ -1,6 +1,7 @@
 package com.alenasoft;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,16 +30,12 @@ public class PlayerGameTest {
   }
 
   @Test
-  public void testVisualGameWithSortedScores() {
-    // Jeff player input data taken from Requirements Document
-    List<String> inputScores =
-        Arrays.asList("10", "7", "3", "9", "0",
-            "10", "0", "8", "8", "2", "F", "6",
+  public void testIncompleteFramesForPlayerGame() {
+    List<String> inputScoresIncompleteGame =
+        Arrays.asList("10", "0", "8", "8", "2", "F", "6",
             "10", "10", "10", "8", "1");
 
-    final PlayerGame playerGame = new PlayerGame("Jeff", inputScores);
-
-    // Just to verifica visually the formated output
-    System.out.println(playerGame);
+    final PlayerGame playerGame = new PlayerGame("Jeff", inputScoresIncompleteGame);
+    assertFalse(playerGame.isValid());
   }
 }

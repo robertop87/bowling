@@ -1,5 +1,6 @@
 package com.alenasoft;
 
+import com.alenasoft.exceptions.InvalidInputScoreException;
 import java.util.Arrays;
 
 public class Frame {
@@ -13,7 +14,13 @@ public class Frame {
     this.index = index;
     this.stringPoints = stringPoints;
     this.score = 0;
-    this.points = Arrays.stream(this.stringPoints).mapToInt(ScoreParser::parseToNumericScore).toArray();
+    this.points = Arrays.stream(this.stringPoints)
+        .mapToInt(p -> {try {
+          return ScoreParser.parseToNumericScore(p);
+          } catch (InvalidInputScoreException e) {
+          return -1;
+        }}).filter(p -> p != -1)
+        .toArray();
   }
 
   public int[] getPoints() {
@@ -24,7 +31,7 @@ public class Frame {
     return this.index;
   }
 
-  public String pointsToPrint() {
+  public String pointsToPrint() throws InvalidInputScoreException {
     if (this.stringPoints.length == 1 && ScoreParser.parseToNumericScore(this.stringPoints[0]) == 10) {
       return String.format("%4s", "X");
     }
@@ -56,7 +63,12 @@ public class Frame {
 
   public int sumOfPoints() {
     return Arrays.stream(this.stringPoints)
-        .mapToInt(ScoreParser::parseToNumericScore)
-        .sum();
+        .mapToInt(p -> {
+          try {
+            return ScoreParser.parseToNumericScore(p);
+          } catch (InvalidInputScoreException e) {
+            return 0;
+          }
+        }).sum();
   }
 }

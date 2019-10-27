@@ -1,13 +1,15 @@
 package com.alenasoft;
 
 import com.alenasoft.exceptions.FrameNotExistsException;
+import com.alenasoft.exceptions.InvalidInputScoreException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public interface FrameOrganizer {
 
-  static List<Frame> organizeScores(List<String> inputPoints) {
+  static List<Frame> organizeScores(List<String> inputPoints)
+      throws InvalidInputScoreException {
     Iterator<String> iterator = inputPoints.iterator();
     List<Frame> frames = new ArrayList<>();
     int index = 1;

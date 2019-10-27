@@ -1,11 +1,11 @@
 package com.alenasoft;
 
+import com.alenasoft.exceptions.InvalidInputScoreException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayerGame {
-
   final private String name;
   final private List<String> inputScores;
   private List<Frame> frames;
@@ -21,8 +21,18 @@ public class PlayerGame {
   }
 
   public void calculateScores() {
-    this.frames = FrameOrganizer.organizeScores(this.inputScores);
-    ScoreComputer.computeScore(this.frames);
+    try {
+      this.frames = FrameOrganizer.organizeScores(this.inputScores);
+    } catch (InvalidInputScoreException e) {
+      this.frames.forEach(f -> f.setScore(0));
+    }
+
+    if (this.isValid()) {
+      ScoreComputer.computeScore(this.frames);
+      return;
+    }
+
+    this.frames.forEach(f -> f.setScore(0));
   }
 
   public List<String> getInputScores() {
@@ -36,7 +46,13 @@ public class PlayerGame {
   private String pinfallsRowToPrint() {
     String rowName = "Pinfalls";
     String framePoints =
-        this.frames.stream().map(f -> f.pointsToPrint()).collect(Collectors.joining("\t\t"));
+        this.frames.stream().map(f -> {
+          try {
+            return f.pointsToPrint();
+          } catch (InvalidInputScoreException e) {
+            return "Invalid points detected";
+          }
+        }).collect(Collectors.joining("\t\t"));
 
     return String.join("\t", rowName, framePoints);
   }
@@ -54,7 +70,12 @@ public class PlayerGame {
 
   @Override
   public String toString() {
-    return String.join("\n", this.name,
+    String nameWithTag = this.name.concat(!this.isValid() ? " [Invalid Game]" : "");
+    return String.join("\n", nameWithTag,
         this.pinfallsRowToPrint(), this.scoresRowToPrint());
+  }
+
+  public boolean isValid() {
+    return this.frames.size() == 10;
   }
 }

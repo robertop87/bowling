@@ -129,6 +129,53 @@ Zero 0
 Zero 0
 Zero 0
 Zero 0
+Incomplete 10
+Incomplete F
+Incomplete 8
+Incomplete 6
+Incomplete 4
+Bigger 20
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 15
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Bigger 0
+Smaller -20
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller -1
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
+Smaller 0
 
 ```
 
@@ -151,6 +198,14 @@ Score		    0		    0		    0		    0		    0		    0		    0		    0		    0		    0
 ZERO
 Pinfalls	 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0 0
 Score		    0		    0		    0		    0		    0		    0		    0		    0		    0		    0
-
+INCOMPLETE [Invalid Game]
+Pinfalls	   X		 F 8		 6 /
+Score		    0		    0		    0
+BIGGER [Invalid Game]
+Pinfalls	
+Score		
+SMALLER [Invalid Game]
+Pinfalls	
+Score		
 
 ```

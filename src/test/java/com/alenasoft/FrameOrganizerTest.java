@@ -2,6 +2,7 @@ package com.alenasoft;
 
 import static org.junit.Assert.assertEquals;
 
+import com.alenasoft.exceptions.InvalidInputScoreException;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
@@ -9,7 +10,8 @@ import org.junit.Test;
 public class FrameOrganizerTest {
 
   @Test
-  public void testOrganizeScoresForJeffCase() {
+  public void testOrganizeScoresForJeffCase()
+      throws InvalidInputScoreException {
     // Jeff player input data taken from Requirements Document
     List<String> inputPoints =
         Arrays.asList("10", "7", "3", "9", "0",
@@ -32,7 +34,8 @@ public class FrameOrganizerTest {
   }
 
   @Test
-  public void testOrganizeScoresForJohnCase() {
+  public void testOrganizeScoresForJohnCase()
+      throws InvalidInputScoreException {
     // John player input data taken from Requirements Document
     List<String> inputPoints =
         Arrays.asList("3", "7", "6", "3", "10", "8", "1", "10", "10", "9", "0", "7", "3", "4", "4", "10", "9", "0");
@@ -52,7 +55,8 @@ public class FrameOrganizerTest {
   }
 
   @Test
-  public void testOrganizeScoresForPerfectGameCarlCase() {
+  public void testOrganizeScoresForPerfectGameCarlCase()
+      throws InvalidInputScoreException {
     // John player input data taken from Requirements Document
     List<String> inputPoints =
         Arrays.asList("10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10");
