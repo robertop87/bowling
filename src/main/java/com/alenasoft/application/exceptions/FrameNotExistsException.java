@@ -1,4 +1,4 @@
-package com.alenasoft.exceptions;
+package com.alenasoft.application.exceptions;
 
 public class FrameNotExistsException extends RuntimeException {
 

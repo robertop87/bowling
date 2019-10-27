@@ -1,4 +1,4 @@
-package com.alenasoft;
+package com.alenasoft.application;
 
 import java.util.List;
 

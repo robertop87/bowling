@@ -1,8 +1,8 @@
-package com.alenasoft.strategies;
+package com.alenasoft.application.strategies;
 
-import com.alenasoft.Frame;
-import com.alenasoft.FrameOrganizer;
-import com.alenasoft.ScoreStrategy;
+import com.alenasoft.application.Frame;
+import com.alenasoft.application.FrameOrganizer;
+import com.alenasoft.application.ScoreStrategy;
 import java.util.List;
 
 class SimpleScoreStrategy implements ScoreStrategy {

@@ -1,5 +1,6 @@
 package com.alenasoft;
 
+import com.alenasoft.infrastructure.DataManager;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -12,13 +13,12 @@ public class App {
 
     try {
       Scanner fileScanner = new Scanner(new File(args[0]));
-      InputProcessor inputProcessor = new InputProcessor();
+      DataManager dataManager = new DataManager();
       while (fileScanner.hasNext()) {
-        inputProcessor.processLine(fileScanner.nextLine());
+        dataManager.processLine(fileScanner.nextLine());
       }
-      inputProcessor.processData();
-      System.out.println(inputProcessor);
-
+      dataManager.processData();
+      System.out.println(dataManager);
     } catch (FileNotFoundException e) {
       System.err.println(e.getMessage());
       System.exit(-1);

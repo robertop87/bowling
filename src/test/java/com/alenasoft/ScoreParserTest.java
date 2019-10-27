@@ -2,7 +2,8 @@ package com.alenasoft;
 
 import static org.junit.Assert.assertEquals;
 
-import com.alenasoft.exceptions.InvalidInputScoreException;
+import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.commons.ScoreParser;
 import org.junit.Test;
 
 public class ScoreParserTest {
@@ -30,12 +31,11 @@ public class ScoreParserTest {
     assertEquals(0, ScoreParser.parseToNumericScore(testValue));
   }
 
-  @Test
+  @Test(expected = InvalidInputScoreException.class)
   public void testNullInputScoreShouldReturnZero()
       throws InvalidInputScoreException {
     final String testValue = null;
-
-    assertEquals(0, ScoreParser.parseToNumericScore(testValue));
+    ScoreParser.parseToNumericScore(testValue);
   }
 
   @Test(expected = InvalidInputScoreException.class)

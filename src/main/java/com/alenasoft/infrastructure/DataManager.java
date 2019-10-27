@@ -1,16 +1,17 @@
-package com.alenasoft;
+package com.alenasoft.infrastructure;
 
+import com.alenasoft.application.PlayerGame;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class InputProcessor {
+public class DataManager {
 
   private List<PlayerGame> playerGames;
 
-  public InputProcessor() {
+  public DataManager() {
     this.playerGames = new ArrayList<>();
   }
 

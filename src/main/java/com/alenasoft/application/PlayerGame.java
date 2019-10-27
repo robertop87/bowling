@@ -1,6 +1,7 @@
-package com.alenasoft;
+package com.alenasoft.application;
 
-import com.alenasoft.exceptions.InvalidInputScoreException;
+import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.application.strategies.ScoreStrategyProvider;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,17 +23,12 @@ public class PlayerGame {
 
   public void calculateScores() {
     try {
-      this.frames = FrameOrganizer.organizeScores(this.inputScores);
+      this.frames = FrameOrganizer.organize(this.inputScores);
     } catch (InvalidInputScoreException e) {
       this.frames.forEach(f -> f.setScore(0));
     }
 
-    if (this.isValid()) {
-      ScoreComputer.computeScore(this.frames);
-      return;
-    }
-
-    this.frames.forEach(f -> f.setScore(0));
+    this.computeScore();
   }
 
   public List<String> getInputScores() {
@@ -77,5 +73,15 @@ public class PlayerGame {
 
   public boolean isValid() {
     return this.frames.size() == 10;
+  }
+
+  public void computeScore() {
+    if (!this.isValid()) {
+      this.frames.forEach(f -> f.setScore(0));
+      return;
+    }
+
+    this.frames.forEach(f -> ScoreStrategyProvider.provideFor(f)
+          .score(f.getIndex(), this.frames));
   }
 }

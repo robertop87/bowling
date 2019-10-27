@@ -1,4 +1,4 @@
-package com.alenasoft.strategies;
+package com.alenasoft.application.strategies;
 
 class SpareScoreStrategy extends AllPinesDownScoreStrategy {
 

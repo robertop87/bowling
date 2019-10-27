@@ -1,6 +1,7 @@
-package com.alenasoft;
+package com.alenasoft.application;
 
-import com.alenasoft.exceptions.InvalidInputScoreException;
+import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.commons.ScoreParser;
 import java.util.Arrays;
 
 public class Frame {
