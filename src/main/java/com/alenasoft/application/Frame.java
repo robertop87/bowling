@@ -49,13 +49,14 @@ public class Frame {
     }
 
     String pointsAsString = "";
-    for (int i = 0; i < this.stringPoints.length; i++) {
-      if (ScoreParser.parseToNumericScore(this.stringPoints[i]) == Constants.maxPinfall) {
-        pointsAsString = pointsAsString.concat(String.format("%2s", Constants.strike));
+    for (String stringPoint : this.stringPoints) {
+      if (ScoreParser.parseToNumericScore(stringPoint) == Constants.maxPinfall) {
+        pointsAsString = pointsAsString
+            .concat(String.format("%2s", Constants.strike));
         continue;
       }
 
-      pointsAsString = pointsAsString.concat(String.format("%2s", this.stringPoints[i]));
+      pointsAsString = pointsAsString.concat(String.format("%2s", stringPoint));
     }
 
     return pointsAsString;
