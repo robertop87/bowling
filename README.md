@@ -209,3 +209,8 @@ Pinfalls
 Score		
 
 ```
+
+## Missing implementations
+
+- Control than sum of chances will no greater than 10
+- If the sum is greater than 10, then invalidate the PlayerGame
