@@ -1,68 +1,49 @@
 package com.alenasoft;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class Frame {
 
   private int index;
-  private int indexFault;
+  private String[] stringPoints;
   private int[] points;
   private int score;
 
-  public Frame(int index, int[] points) {
-    this(index, points, -1);
-  }
-
-  public Frame(int index, int[] points, int indexFault) {
+  public Frame(int index, String[] stringPoints) {
     this.index = index;
-    this.points = points;
+    this.stringPoints = stringPoints;
     this.score = 0;
-    this.indexFault = indexFault;
-  }
-
-  public int getIndex() {
-    return this.index;
+    this.points = Arrays.stream(this.stringPoints).mapToInt(ScoreParser::parseToNumericScore).toArray();
   }
 
   public int[] getPoints() {
     return this.points;
   }
 
+  public int getIndex() {
+    return this.index;
+  }
+
   public String pointsToPrint() {
-    if (this.points.length == 1 && this.points[0] == 10) {
+    if (this.stringPoints.length == 1 && ScoreParser.parseToNumericScore(this.stringPoints[0]) == 10) {
       return String.format("%4s", "X");
     }
 
-    if (this.points.length == 2 && this.sumOfPoints() == 10) {
-      return String.format("%2d%2s", this.points[0], "/");
+    if (this.stringPoints.length == 2 && this.sumOfPoints() == 10) {
+      return String.format("%2s%2s", this.stringPoints[0], "/");
     }
 
     String pointsAsString = "";
-    for (int i = 0; i < this.points.length; i++) {
-      if (this.points[i] == 10) {
+    for (int i = 0; i < this.stringPoints.length; i++) {
+      if (ScoreParser.parseToNumericScore(this.stringPoints[i]) == 10) {
         pointsAsString = pointsAsString.concat(String.format("%2s", "X"));
         continue;
       }
 
-      if (this.points[i] == 0 && i == indexFault) {
-        pointsAsString = pointsAsString.concat(String.format("%2s", "F"));
-        continue;
-      }
-
-      pointsAsString = pointsAsString.concat(String.format("%2d", this.points[i]));
+      pointsAsString = pointsAsString.concat(String.format("%2s", this.stringPoints[i]));
     }
 
     return pointsAsString;
-  }
-
-  @Override
-  public String toString() {
-    String formatedPoints = Arrays.stream(this.points)
-        .mapToObj(p -> Integer.toString(p))
-        .collect(Collectors.joining("|"));
-
-    return String.format("Frame %d. Points: [%s]", this.index, formatedPoints);
   }
 
   public void setScore(int score) {
@@ -74,6 +55,8 @@ public class Frame {
   }
 
   public int sumOfPoints() {
-    return Arrays.stream(this.points).sum();
+    return Arrays.stream(this.stringPoints)
+        .mapToInt(ScoreParser::parseToNumericScore)
+        .sum();
   }
 }

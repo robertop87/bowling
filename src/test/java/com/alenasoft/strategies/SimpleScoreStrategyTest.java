@@ -14,11 +14,11 @@ public class SimpleScoreStrategyTest {
   @Test
   public void testStrikeScoreForThirdFrameJeffCase() {
     int targetFrameIndex = 3;
-    Frame previousFrame = new Frame(2, new int[] { 7, 3 });
+    Frame previousFrame = new Frame(2, new String[] { "7", "3" });
     previousFrame.setScore(39);
 
     List<Frame> frames = Arrays.asList(previousFrame,
-        new Frame(targetFrameIndex, new int[] { 9, 0 }));
+        new Frame(targetFrameIndex, new String[] { "9", "0" }));
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
@@ -28,11 +28,11 @@ public class SimpleScoreStrategyTest {
   @Test
   public void testStrikeScoreForFifthFrameJeffCase() {
     int targetFrameIndex = 5;
-    Frame previousFrame = new Frame(4, new int[] { 10 });
+    Frame previousFrame = new Frame(4, new String[] { "10" });
     previousFrame.setScore(66);
 
     List<Frame> frames = Arrays.asList(previousFrame,
-        new Frame(targetFrameIndex, new int[] { 0, 8 }));
+        new Frame(targetFrameIndex, new String[] { "0", "8" }));
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
@@ -42,11 +42,11 @@ public class SimpleScoreStrategyTest {
   @Test
   public void testStrikeScoreForSeventhFrameJeffCase() {
     int targetFrameIndex = 7;
-    Frame previousFrame = new Frame(6, new int[] { 8, 2 });
+    Frame previousFrame = new Frame(6, new String[] { "8", "2" });
     previousFrame.setScore(84);
 
     List<Frame> frames = Arrays.asList(previousFrame,
-        new Frame(targetFrameIndex, new int[] { 0, 6 }));
+        new Frame(targetFrameIndex, new String[] { "0", "6" }));
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
@@ -56,11 +56,11 @@ public class SimpleScoreStrategyTest {
   @Test
   public void testStrikeScoreForLatestFrameJeffCase() {
     int targetFrameIndex = 10;
-    Frame previousFrame = new Frame(9, new int[] { 10 });
+    Frame previousFrame = new Frame(9, new String[] { "10" });
     previousFrame.setScore(148);
 
     List<Frame> frames = Arrays.asList(previousFrame,
-        new Frame(targetFrameIndex, new int[] { 10, 8, 1 }));
+        new Frame(targetFrameIndex, new String[] { "10", "8", "1" }));
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
@@ -70,11 +70,11 @@ public class SimpleScoreStrategyTest {
   @Test
   public void testStrikeScoreForLatestFrameJohnCase() {
     int targetFrameIndex = 10;
-    Frame previousFrame = new Frame(9, new int[] { 4, 4 });
+    Frame previousFrame = new Frame(9, new String[] { "4", "4" });
     previousFrame.setScore(132);
 
     List<Frame> frames = Arrays.asList(previousFrame,
-        new Frame(targetFrameIndex, new int[] { 10, 9, 0 }));
+        new Frame(targetFrameIndex, new String[] { "10", "9", "0" }));
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);

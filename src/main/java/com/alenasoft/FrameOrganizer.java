@@ -17,27 +17,19 @@ public interface FrameOrganizer {
       int currentValue = ScoreParser.parseToNumericScore(currentInput);
 
       if (currentValue == 10 && index != 10) {
-        int[] points = {currentValue};
+        String[] points = { currentInput };
         frames.add(new Frame(index, points));
         index++;
         continue;
       }
 
       if (index != 10) {
-        int[] points = {currentValue, ScoreParser.parseToNumericScore(iterator.next())};
-        if ("F".equals(currentInput)) {
-          frames.add(new Frame(index, points, 0));
-        } else {
-          frames.add(new Frame(index, points));
-        }
+        String[] points = {currentInput, iterator.next()};
+        frames.add(new Frame(index, points));
         index++;
       } else {
-        int[] points = {currentValue, ScoreParser.parseToNumericScore(iterator.next()), ScoreParser.parseToNumericScore(iterator.next())};
-        if ("F".equals(currentInput)) {
-          frames.add(new Frame(index, points, 0));
-        } else {
-          frames.add(new Frame(index, points));
-        }
+        String[] points = {currentInput, iterator.next(), iterator.next()};
+        frames.add(new Frame(index, points));
         index++;
       }
     }
