@@ -24,7 +24,7 @@ and pass a file path as parameter
 
   `$ java -jar bowling-0.1.jar /path/to/bowling-data.txt`
   
-#### Quick Linux
+#### Quick Build/Run tip for Linux
 In order to build and run the base tests cases you can run the next command (tested only on linux terminal):
 
   `mvn clean package && java -jar target/bowling-0.1.jar ./bowling-data.txt`
@@ -124,5 +124,28 @@ Zero 0
 Zero 0
 Zero 0
 Zero 0
+
+```
+
+### Expected output
+
+```
+Frame		    1		    2		    3		    4		    5		    6		    7		    8		    9		   10		
+JEFF
+Pinfalls	   X		 7 /		 9 0		   X		 0 8		 8 /		 F 6		   X		   X		 X 8 1
+Score		   20		   39		   48		   66		   74		   84		   90		  120		  148		  167
+JOHN
+Pinfalls	 3 /		 6 3		   X		 8 1		   X		   X		 9 0		 7 /		 4 4		 X 9 0
+Score		   16		   25		   44		   53		   82		  101		  110		  124		  132		  151
+CARL
+Pinfalls	   X		   X		   X		   X		   X		   X		   X		   X		   X		 X X X
+Score		   30		   60		   90		  120		  150		  180		  210		  240		  270		  300
+FAILED
+Pinfalls	 F F		 F F		 F F		 F F		 F F		 F F		 F F		 F F		 F F		 F F F
+Score		    0		    0		    0		    0		    0		    0		    0		    0		    0		    0
+ZERO
+Pinfalls	 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0 0
+Score		    0		    0		    0		    0		    0		    0		    0		    0		    0		    0
+
 
 ```
