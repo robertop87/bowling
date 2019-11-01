@@ -1,5 +1,6 @@
 package com.alenasoft.infrastructure.console;
 
+import com.alenasoft.application.ScoreDataCenter;
 import com.alenasoft.application.ScoreParser;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
@@ -15,12 +16,12 @@ public class ConsoleOutputPrinter implements OutputPrinter {
   private final ScoreParser scoreParser = ScoreParser.defaultParser();
 
   @Override
-  public void print(List<PlayerGame> playerGames) {
+  public void print(ScoreDataCenter scoreDataManager) {
     System.out.println(
         String.join(
             "\n",
             this.frameRowToPrint(),
-            playerGames
+            scoreDataManager.getPlayerGames()
                 .stream()
                 .sorted((pg1, pg2) -> Boolean.compare(pg2.isValidGame(), pg1.isValidGame()))
                 .map(this::printablePlayerGame)

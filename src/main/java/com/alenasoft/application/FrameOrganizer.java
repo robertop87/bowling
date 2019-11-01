@@ -1,5 +1,6 @@
 package com.alenasoft.application;
 
+import com.alenasoft.application.defaults.DefaultFrameOrganizer;
 import com.alenasoft.application.exceptions.FrameNotExistsException;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.domain.Frame;

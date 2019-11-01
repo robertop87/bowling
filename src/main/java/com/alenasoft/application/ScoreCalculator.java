@@ -1,5 +1,6 @@
 package com.alenasoft.application;
 
+import com.alenasoft.application.defaults.DefaultScoreCalculator;
 import com.alenasoft.domain.PlayerGame;
 
 public interface ScoreCalculator {

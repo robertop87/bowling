@@ -1,5 +1,7 @@
-package com.alenasoft.application;
+package com.alenasoft.application.defaults;
 
+import com.alenasoft.application.FrameOrganizer;
+import com.alenasoft.application.ScoreParser;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
 import com.alenasoft.domain.Frame;

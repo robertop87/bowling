@@ -1,9 +1,8 @@
 package com.alenasoft.infrastructure;
 
-import com.alenasoft.domain.PlayerGame;
-import java.util.List;
+import com.alenasoft.application.ScoreDataCenter;
 
 public interface OutputPrinter {
 
-  void print(List<PlayerGame> playerGames);
+  void print(ScoreDataCenter scoreDataCenter);
 }

@@ -1,6 +1,7 @@
 package com.alenasoft;
 
-import com.alenasoft.infrastructure.DataManager;
+import com.alenasoft.application.ScoreDataCenter;
+import com.alenasoft.application.defaults.DefaultScoreDataCenter;
 import com.alenasoft.infrastructure.DataReader;
 import com.alenasoft.infrastructure.OutputPrinter;
 import com.alenasoft.infrastructure.console.ConsoleOutputPrinter;
@@ -22,16 +23,17 @@ public class App {
     }
 
     try {
-      DataManager dataManager = new DataManager();
       DataReader dataReader = new DataReaderFromScanner(new Scanner(new File(args[0])));
-      dataManager.processData(dataReader.readPlayerGames());
+
+      ScoreDataCenter dataManager = new DefaultScoreDataCenter(dataReader.readPlayerGames());
+      dataManager.processData();
 
       OutputPrinter outputPrinter = new ConsoleOutputPrinter();
-      outputPrinter.print(dataManager.getPlayerGames());
+      outputPrinter.print(dataManager);
     } catch (FileNotFoundException e) {
       log.error(e.getMessage());
       System.exit(-1);
-    } finally{
+    } finally {
       System.exit(0);
     }
   }
