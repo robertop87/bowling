@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FrameOrganizer {
 
-  List<Frame> organize(List<String> inputPoints) throws InvalidInputScoreException;
+  List<Frame> organize(PlayerGame playerGame) throws InvalidInputScoreException;
 
   default Frame getByIndex(int index, List<Frame> frames) {
     return frames

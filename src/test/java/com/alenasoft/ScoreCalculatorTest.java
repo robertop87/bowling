@@ -4,16 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import com.alenasoft.application.PlayerGame;
-import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Before;
 import org.junit.Test;
 
-public class PlayerGameTest {
+public class ScoreCalculatorTest {
+
+  private ScoreCalculator scoreCalculator;
+
+  @Before
+  public void setUp() {
+    this.scoreCalculator = ScoreCalculator.defaultScoreCalculator();
+  }
 
   @Test
-  public void testBuildPlayerGameWithSortedScores()
-      throws InvalidInputScoreException {
+  public void testBuildPlayerGameWithSortedScores() {
     // Jeff player input data taken from Requirements Document
     List<String> inputScores =
         Arrays.asList("10", "7", "3", "9", "0",
@@ -21,7 +27,7 @@ public class PlayerGameTest {
             "10", "10", "10", "8", "1");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", inputScores);
-    playerGame.calculateScores();
+    this.scoreCalculator.calculateScore(playerGame);
 
     final List<String> scores = playerGame.getInputScores();
 
@@ -40,27 +46,25 @@ public class PlayerGameTest {
             "10", "10", "10", "8", "1");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", inputScoresIncompleteGame);
-    playerGame.calculateScores();
+    this.scoreCalculator.calculateScore(playerGame);
 
     assertFalse(playerGame.isValidGame());
   }
 
   @Test
-  public void testLessThan10AttempsForPlayerGame()
-      throws InvalidInputScoreException {
+  public void testLessThan10AttempsForPlayerGame() {
     List<String> invalidGame =
         Arrays.asList("10", "0", "8", "8", "2", "F", "6",
             "10", "10", "10", "8", "1");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", invalidGame);
-    playerGame.calculateScores();
+    this.scoreCalculator.calculateScore(playerGame);
 
     assertFalse(playerGame.isValidGame());
   }
 
   @Test
-  public void testMoreThan10AttempsForPlayerGame()
-      throws InvalidInputScoreException {
+  public void testMoreThan10AttempsForPlayerGame() {
     List<String> invalidGame =
         Arrays.asList("10", "0", "8", "8", "2", "F", "6",
             "10", "10", "10", "8", "2", "10", "0", "8", "8", "2", "F", "6",
@@ -68,7 +72,7 @@ public class PlayerGameTest {
             "10", "10", "10", "8", "2");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", invalidGame);
-    playerGame.calculateScores();
+    this.scoreCalculator.calculateScore(playerGame);
     assertFalse(playerGame.isValidGame());
   }
 }

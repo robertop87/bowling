@@ -1,8 +1,5 @@
 package com.alenasoft.application;
 
-import com.alenasoft.application.exceptions.InvalidInputScoreException;
-import com.alenasoft.application.strategies.ScoreStrategyProvider;
-import com.alenasoft.commons.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -12,11 +9,9 @@ public class PlayerGame {
 
   public static final Logger log = LogManager.getLogger();
 
-  private static final String invalidNumberOfAttemptsTemplate = "Invalid Number of Attempts [%d] for [%s] player";
-
-  private final FrameOrganizer frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
   private final String name;
   private final List<String> inputScores;
+
   private List<Frame> frames;
   private boolean validGame;
 
@@ -27,17 +22,7 @@ public class PlayerGame {
   public PlayerGame(String name, List<String> inputScores) {
     this.name = name;
     this.inputScores = inputScores;
-  }
-
-  public void calculateScores() {
-    try {
-      this.frames = this.frameOrganizer.organize(this.inputScores);
-      this.computeScore();
-      this.validGame = Boolean.TRUE;
-    } catch (InvalidInputScoreException e) {
-      this.validGame = Boolean.FALSE;
-      log.error(e.getMessage());
-    }
+    this.frames = new ArrayList<>();
   }
 
   public List<String> getInputScores() {
@@ -52,18 +37,12 @@ public class PlayerGame {
     return this.frames;
   }
 
-  public void validateAttempts() throws InvalidInputScoreException {
-    if (this.frames.size() != GameConstants.maxFramesLength) {
-      throw new InvalidInputScoreException(
-          String.format(invalidNumberOfAttemptsTemplate, this.frames.size(), this.name));
-    }
+  public void setFrames(List<Frame> frames) {
+    this.frames = frames;
   }
 
-  private void computeScore() throws InvalidInputScoreException {
-    this.validateAttempts();
-    for (Frame f : this.frames) {
-      ScoreStrategyProvider.provideFor(f).score(f.getIndex(), this.frames);
-    }
+  public void setValidGame(boolean valid) {
+    this.validGame = valid;
   }
 
   public boolean isValidGame() {

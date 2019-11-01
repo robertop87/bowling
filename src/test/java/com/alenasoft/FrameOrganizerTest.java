@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
+import com.alenasoft.application.PlayerGame;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import java.util.Arrays;
 import java.util.List;
@@ -27,8 +28,9 @@ public class FrameOrganizerTest {
         Arrays.asList("10", "7", "3", "9", "0",
             "10", "0", "8", "8", "2", "F", "6",
             "10", "10", "10", "8", "1");
+    PlayerGame playerGame = new PlayerGame("Test", inputPoints);
 
-    final List<Frame> frames = this.frameOrganizer.organize(inputPoints);
+    final List<Frame> frames = this.frameOrganizer.organize(playerGame);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());
@@ -49,8 +51,9 @@ public class FrameOrganizerTest {
     // John player input data taken from Requirements Document
     List<String> inputPoints =
         Arrays.asList("3", "7", "6", "3", "10", "8", "1", "10", "10", "9", "0", "7", "3", "4", "4", "10", "9", "0");
+    PlayerGame playerGame = new PlayerGame("Test", inputPoints);
 
-    final List<Frame> frames = this.frameOrganizer.organize(inputPoints);
+    final List<Frame> frames = this.frameOrganizer.organize(playerGame);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());
@@ -70,8 +73,9 @@ public class FrameOrganizerTest {
     // John player input data taken from Requirements Document
     List<String> inputPoints =
         Arrays.asList("10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10");
+    PlayerGame playerGame = new PlayerGame("Test", inputPoints);
 
-    final List<Frame> frames = this.frameOrganizer.organize(inputPoints);
+    final List<Frame> frames = this.frameOrganizer.organize(playerGame);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());

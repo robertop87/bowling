@@ -12,7 +12,14 @@ public class FrameOrganizerImpl implements FrameOrganizer {
   private final ScoreParser scoreParser = ScoreParser.defaultParser();
 
   @Override
-  public List<Frame> organize(List<String> inputPoints)
+  public List<Frame> organize(PlayerGame playerGame)
+      throws InvalidInputScoreException {
+    playerGame.setFrames(this.buildFrames(playerGame.getInputScores()));
+
+    return playerGame.getFrames();
+  }
+
+  private List<Frame> buildFrames(List<String> inputPoints)
       throws InvalidInputScoreException {
     Iterator<String> iterator = inputPoints.iterator();
     List<Frame> frames = new ArrayList<>();
