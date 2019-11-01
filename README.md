@@ -15,14 +15,14 @@ To build the JAR artifact, runs the next command line.
 
   `$ mvn clean package`
   
-This will generate the executable target/bowling-0.1.jar
+This will generate the executable target/bowling-0.2.jar
 
 ### Execute application
 
 This is a JAR application and it's designed to run on console, to execute use the next command
 and pass a file path as parameter
 
-  `$ java -jar bowling-0.1.jar /path/to/bowling-data-tab-separated.txt`
+  `$ java -jar bowling-0.2.jar /path/to/bowling-data-tab-separated.txt`
   
 ### About the txt file
 - The file should contains only valid formatted rows (Name and Value)
@@ -32,7 +32,7 @@ and pass a file path as parameter
 #### Quick Build/Run tip for Linux
 In order to build and run the base tests cases you can run the next command (tested only on linux terminal):
 
-  `mvn clean package && java -jar target/bowling-0.1.jar ./bowling-data-tab-separated.txt`
+  `mvn clean package && java -jar target/bowling-0.2.jar ./bowling-data-tab-separated.txt`
 
   
 ## Test cases
@@ -164,7 +164,7 @@ You can find some invalid test cases on ./invalid
 
 Example Test File: bowling-data-space-separated-with-errors.txt
 
-  `java -jar target/bowling-0.1.jar ./bowling-data-space-separated-with-errors.txt`
+  `java -jar target/bowling-0.2.jar ./bowling-data-space-separated-with-errors.txt`
 
 #### Example of Outputs with invalid PlayerGames
 
