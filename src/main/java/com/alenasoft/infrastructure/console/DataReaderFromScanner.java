@@ -1,8 +1,8 @@
-package com.alenasoft.infrastructure;
+package com.alenasoft.infrastructure.console;
 
 import com.alenasoft.domain.PlayerGame;
+import com.alenasoft.infrastructure.DataReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,16 +15,17 @@ public class DataReaderFromScanner implements DataReader {
   public static final Logger log = LogManager.getLogger();
 
   private List<PlayerGame> playerGames;
+  private Scanner scanner;
 
-  public DataReaderFromScanner() {
+  public DataReaderFromScanner(Scanner scanner) {
     this.playerGames = new ArrayList<>();
+    this.scanner = scanner;
   }
 
   @Override
-  public List<PlayerGame> readPlayerGames(Iterator rowInputs) {
-    Scanner scanner = (Scanner) rowInputs;
-    while (rowInputs.hasNext()) {
-      this.processLine(scanner.nextLine());
+  public List<PlayerGame> readPlayerGames() {
+    while (this.scanner.hasNext()) {
+      this.processLine(this.scanner.nextLine());
     }
     return playerGames;
   }

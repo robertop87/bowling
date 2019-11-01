@@ -2,9 +2,9 @@ package com.alenasoft;
 
 import static org.junit.Assert.assertEquals;
 
-import com.alenasoft.application.exceptions.InvalidInputScoreException;
-import com.alenasoft.application.ScoreParser;
 import com.alenasoft.application.DefaultScoreParser;
+import com.alenasoft.application.ScoreParser;
+import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import org.junit.Before;
 import org.junit.Test;
 

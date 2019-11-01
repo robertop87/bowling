@@ -1,10 +1,11 @@
-package com.alenasoft.infrastructure;
+package com.alenasoft.infrastructure.console;
 
+import com.alenasoft.application.ScoreParser;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
-import com.alenasoft.application.ScoreParser;
 import com.alenasoft.domain.Frame;
 import com.alenasoft.domain.PlayerGame;
+import com.alenasoft.infrastructure.OutputPrinter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

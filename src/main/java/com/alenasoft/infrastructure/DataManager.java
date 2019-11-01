@@ -11,8 +11,12 @@ public class DataManager {
   private ScoreCalculator scoreCalculator;
 
   public DataManager() {
+    this(ScoreCalculator.defaultScoreCalculator());
+  }
+
+  public DataManager(ScoreCalculator scoreCalculator) {
     this.playerGames = new ArrayList<>();
-    this.scoreCalculator = ScoreCalculator.defaultScoreCalculator();
+    this.scoreCalculator = scoreCalculator;
   }
 
   public List<PlayerGame> getPlayerGames() {
