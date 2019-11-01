@@ -11,14 +11,15 @@ import org.apache.logging.log4j.Logger;
 
 public class PlayerGame {
 
-  public static Logger log = LogManager.getLogger();
+  public static final Logger log = LogManager.getLogger();
 
-  public static final String invalidNumberOfAttemptsTemplate = "Invalid Number of Attempts [%d] for [%s] player";
+  private static final String invalidNumberOfAttemptsTemplate = "Invalid Number of Attempts [%d] for [%s] player";
 
   private final FrameOrganizer frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
   private final String name;
   private final List<String> inputScores;
   private List<Frame> frames;
+  private boolean validGame;
 
   public PlayerGame(String name) {
     this(name, new ArrayList<>());
@@ -29,9 +30,15 @@ public class PlayerGame {
     this.inputScores = inputScores;
   }
 
-  public void calculateScores() throws InvalidInputScoreException {
-    this.frames = this.frameOrganizer.organize(this.inputScores);
-    this.computeScore();
+  public void calculateScores() {
+    try {
+      this.frames = this.frameOrganizer.organize(this.inputScores);
+      this.computeScore();
+      this.validGame = Boolean.TRUE;
+    } catch (InvalidInputScoreException e) {
+      this.validGame = Boolean.FALSE;
+      //log.error(e.getMessage());
+    }
   }
 
   public List<String> getInputScores() {
@@ -73,6 +80,10 @@ public class PlayerGame {
 
   @Override
   public String toString() {
+    if (!this.validGame) {
+      return String.format("[%s does not have a valid game]", this.name);
+    }
+
     return String.join("\n", this.name, this.pinfallsRowToPrint(), this.scoresRowToPrint());
   }
 
@@ -88,5 +99,9 @@ public class PlayerGame {
     for (Frame f : this.frames) {
       ScoreStrategyProvider.provideFor(f).score(f.getIndex(), this.frames);
     }
+  }
+
+  public boolean isValidGame() {
+    return this.validGame;
   }
 }

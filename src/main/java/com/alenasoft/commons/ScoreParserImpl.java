@@ -7,7 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 public class ScoreParserImpl implements ScoreParser {
 
-  public static Logger log = LogManager.getLogger();
+  private static final Logger log = LogManager.getLogger();
+
+  private final String warningTemplate = "Invalid Score found [%s], this invalidates the PlayerGame";
 
   @Override
   public int parseToNumericScore(String inputScore)
@@ -35,7 +37,7 @@ public class ScoreParserImpl implements ScoreParser {
   }
 
   private void fireInvalidInputException(String inputScore) throws InvalidInputScoreException {
-    log.error(String.format(warningTemplate, inputScore));
+    log.info(String.format(warningTemplate, inputScore));
     throw new InvalidInputScoreException(String.format(warningTemplate, inputScore));
   }
 }

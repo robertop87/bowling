@@ -1,6 +1,5 @@
 package com.alenasoft;
 
-import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.infrastructure.DataManager;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,7 +25,7 @@ public class App {
       }
       dataManager.processData();
       System.out.println(dataManager);
-    } catch (FileNotFoundException | InvalidInputScoreException e) {
+    } catch (FileNotFoundException e) {
       log.error(e.getMessage());
       System.exit(-1);
     } finally{

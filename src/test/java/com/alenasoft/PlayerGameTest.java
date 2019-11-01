@@ -1,6 +1,7 @@
 package com.alenasoft;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import com.alenasoft.application.PlayerGame;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
@@ -32,18 +33,19 @@ public class PlayerGameTest {
     assertEquals("1", scores.get(scores.size()-1));
   }
 
-  @Test(expected = InvalidInputScoreException.class)
-  public void testIncompleteFramesForPlayerGame()
-      throws InvalidInputScoreException {
+  @Test
+  public void testIncompleteFramesForPlayerGame() {
     List<String> inputScoresIncompleteGame =
         Arrays.asList("10", "0", "8", "8", "2", "F", "6",
             "10", "10", "10", "8", "1");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", inputScoresIncompleteGame);
     playerGame.calculateScores();
+
+    assertFalse(playerGame.isValidGame());
   }
 
-  @Test(expected = InvalidInputScoreException.class)
+  @Test
   public void testLessThan10AttempsForPlayerGame()
       throws InvalidInputScoreException {
     List<String> invalidGame =
@@ -52,9 +54,11 @@ public class PlayerGameTest {
 
     final PlayerGame playerGame = new PlayerGame("Jeff", invalidGame);
     playerGame.calculateScores();
+
+    assertFalse(playerGame.isValidGame());
   }
 
-  @Test(expected = InvalidInputScoreException.class)
+  @Test
   public void testMoreThan10AttempsForPlayerGame()
       throws InvalidInputScoreException {
     List<String> invalidGame =
@@ -65,5 +69,6 @@ public class PlayerGameTest {
 
     final PlayerGame playerGame = new PlayerGame("Jeff", invalidGame);
     playerGame.calculateScores();
+    assertFalse(playerGame.isValidGame());
   }
 }

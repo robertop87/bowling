@@ -161,33 +161,33 @@ Score		0		0		0		0		0		0		0		0		0		0
 ### Invalid cases
 
 You can find some invalid test cases on ./invalid
-Example Test File: exceeds-max-value-in-sum.txt
+
+Example Test File: bowling-data-space-separated-with-errors.txt
+
+  `java -jar target/bowling-0.1.jar ./bowling-data-space-separated-with-errors.txt`
+
+#### Example of Outputs with invalid PlayerGames
 
 ```
-Jeff 10
-Jeff 8 -- Consecutive sum of values 8 & 6 are invalid
-Jeff 6
-Jeff 9
-Jeff 0
-Jeff 10
-Jeff 0
-Jeff 8
-Jeff 8
-Jeff 2
-Jeff F
-Jeff 6
-Jeff 10
-Jeff 10
-Jeff 10
-Jeff 8
-Jeff 1
-
+INFO  | 2019-11-01 09:54:25 | [main] commons.ScoreParserImpl (ScoreParserImpl.java:40) - Invalid Score found [20], this invalidates the PlayerGame
+INFO  | 2019-11-01 09:54:25 | [main] commons.ScoreParserImpl (ScoreParserImpl.java:40) - Invalid Score found [-20], this invalidates the PlayerGame
+Frame		1		2		3		4		5		6		7		8		9		10
+JOHN
+Pinfalls	3	/	6	3		X	8	1		X		X	9	0	7	/	4	4	X	9	0
+Score		16		25		44		53		82		101		110		124		132		151
+CARL
+Pinfalls		X		X		X		X		X		X		X		X		X	X	X	X
+Score		30		60		90		120		150		180		210		240		270		300
+FAILED
+Pinfalls	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F
+Score		0		0		0		0		0		0		0		0		0		0
+ZERO
+Pinfalls	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Score		0		0		0		0		0		0		0		0		0		0
+[JEFF does not have a valid game]
+[BIGGER does not have a valid game]
+[INCOMPLETE does not have a valid game]
+[SMALLER does not have a valid game]
 ```
 
-#### Examples of Expected Outputs
-
-```
-ERROR | 2019-11-01 00:49:37 | [main] alenasoft.App (App.java:30) - Invalid Number of Attempts [3] for [INCOMPLETE] player
-
-ERROR | 2019-11-01 01:31:47 | [main] alenasoft.App (App.java:30) - The current sum of points [14] in Frame [2] exceeds the max allowed (10)
-```
+Notice that PlayerGames with error are not calculated, but they are list at the bottom of the output 

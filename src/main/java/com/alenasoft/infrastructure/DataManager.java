@@ -1,7 +1,6 @@
 package com.alenasoft.infrastructure;
 
 import com.alenasoft.application.PlayerGame;
-import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +35,13 @@ public class DataManager {
 
     String[] values = sanitized.split(" ");
     if (values.length < 1 || values.length > 2) {
-      log.error(String.format("Invalid row input: [%s] cannot processed", nextLine));
+      log.info(String.format("Invalid row input: [%s] cannot processed", nextLine));
       System.exit(-1);
     }
     this.addOrUpdate(values[0], values[1]);
   }
 
-  public void processData() throws InvalidInputScoreException {
+  public void processData() {
     for (PlayerGame playerGame : this.playerGames) {
       playerGame.calculateScores();
     }
@@ -53,7 +52,10 @@ public class DataManager {
     return String.join(
         "\n",
         this.frameRowToPrint(),
-        this.playerGames.stream().map(PlayerGame::toString).collect(Collectors.joining("\n")));
+        this.playerGames.stream()
+            .sorted((pg1, pg2) -> Boolean.compare(pg2.isValidGame(), pg1.isValidGame()))
+            .map(PlayerGame::toString)
+            .collect(Collectors.joining("\n")));
   }
 
   private String frameRowToPrint() {
