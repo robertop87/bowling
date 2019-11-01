@@ -1,13 +1,17 @@
 package com.alenasoft;
 
-import com.alenasoft.application.Frame;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
+import com.alenasoft.commons.ScoreParser;
+import com.alenasoft.domain.Frame;
 import com.alenasoft.domain.PlayerGame;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ConsoleOutputPrinter implements OutputPrinter {
+
+  private final ScoreParser scoreParser = ScoreParser.defaultParser();
 
   @Override
   public void print(List<PlayerGame> playerGames) {
@@ -48,7 +52,7 @@ public class ConsoleOutputPrinter implements OutputPrinter {
             .map(
                 f -> {
                   try {
-                    return f.pointsToPrint();
+                    return this.pointsToPrint(f);
                   } catch (InvalidInputScoreException e) {
                     return "Invalid points detected";
                   }
@@ -67,5 +71,25 @@ public class ConsoleOutputPrinter implements OutputPrinter {
             .collect(Collectors.joining("\t\t"));
 
     return String.join("\t\t", rowName, frameScores);
+  }
+
+  public String pointsToPrint(Frame frame) throws InvalidInputScoreException {
+    if (frame.getStringPoints().length == 1
+        && this.scoreParser.parseToNumericScore(frame.getStringPoints()[0]) == GameConstants.strikeValue) {
+      return String.format(frame.getIndex() == 1 ? "\t%s" : "\t\t%s", GameConstants.strike);
+    }
+
+    if (frame.getStringPoints().length == 2 && frame.sumOfPoints() == GameConstants.maxPinfall) {
+      return String.format(frame.getIndex() == 1 ? "%s\t%s" : "\t%s\t%s", frame.getStringPoints()[0], GameConstants.spare);
+    }
+
+    List<String> maskValues = new ArrayList<>();
+
+    for (String stringPoint : frame.getStringPoints()) {
+      maskValues.add(this.scoreParser.parseToNumericScore(stringPoint) == GameConstants.maxPinfall ? GameConstants.strike : stringPoint);
+    }
+
+    String pointsAsString = maskValues.stream().collect(Collectors.joining("\t"));
+    return frame.isFirstFrame() ? pointsAsString : "\t".concat(pointsAsString);
   }
 }

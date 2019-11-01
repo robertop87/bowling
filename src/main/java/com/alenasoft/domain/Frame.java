@@ -1,16 +1,14 @@
-package com.alenasoft.application;
+package com.alenasoft.domain;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
 import com.alenasoft.commons.ScoreParser;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Frame {
 
   private final ScoreParser scoreParser = ScoreParser.defaultParser();
+
   private int index;
   private String[] stringPoints;
   private int[] points;
@@ -38,28 +36,12 @@ public class Frame {
     return this.points;
   }
 
-  public int getIndex() {
-    return this.index;
+  public String[] getStringPoints() {
+    return this.stringPoints;
   }
 
-  public String pointsToPrint() throws InvalidInputScoreException {
-    if (this.stringPoints.length == 1
-        && this.scoreParser.parseToNumericScore(this.stringPoints[0]) == GameConstants.strikeValue) {
-      return String.format(this.index == 1 ? "\t%s" : "\t\t%s", GameConstants.strike);
-    }
-
-    if (this.stringPoints.length == 2 && this.sumOfPoints() == GameConstants.maxPinfall) {
-      return String.format(this.index == 1 ? "%s\t%s" : "\t%s\t%s", this.stringPoints[0], GameConstants.spare);
-    }
-
-    List<String> maskValues = new ArrayList<>();
-
-    for (String stringPoint : this.stringPoints) {
-      maskValues.add(this.scoreParser.parseToNumericScore(stringPoint) == GameConstants.maxPinfall ? GameConstants.strike : stringPoint);
-    }
-
-    String pointsAsString = maskValues.stream().collect(Collectors.joining("\t"));
-    return this.isFirstFrame() ? pointsAsString : "\t".concat(pointsAsString);
+  public int getIndex() {
+    return this.index;
   }
 
   public void setScore(int score) {
@@ -83,7 +65,7 @@ public class Frame {
         .sum();
   }
 
-  private boolean isFirstFrame() {
+  public boolean isFirstFrame() {
     return this.index == 1;
   }
 }

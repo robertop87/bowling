@@ -1,8 +1,8 @@
 package com.alenasoft.application.strategies;
 
-import com.alenasoft.application.Frame;
 import com.alenasoft.application.ScoreStrategy;
 import com.alenasoft.commons.GameConstants;
+import com.alenasoft.domain.Frame;
 
 public interface ScoreStrategyProvider {
 

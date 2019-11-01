@@ -1,6 +1,5 @@
 package com.alenasoft.domain;
 
-import com.alenasoft.application.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;

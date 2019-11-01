@@ -2,9 +2,9 @@ package com.alenasoft;
 
 import static org.junit.Assert.assertEquals;
 
-import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.domain.Frame;
 import com.alenasoft.domain.PlayerGame;
 import java.util.Arrays;
 import java.util.List;

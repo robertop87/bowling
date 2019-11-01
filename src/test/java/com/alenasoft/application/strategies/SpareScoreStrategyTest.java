@@ -2,10 +2,10 @@ package com.alenasoft.application.strategies;
 
 import static org.junit.Assert.assertEquals;
 
-import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
 import com.alenasoft.application.ScoreStrategy;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.domain.Frame;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;

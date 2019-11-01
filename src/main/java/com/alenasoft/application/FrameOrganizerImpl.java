@@ -3,6 +3,7 @@ package com.alenasoft.application;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
 import com.alenasoft.commons.ScoreParser;
+import com.alenasoft.domain.Frame;
 import com.alenasoft.domain.PlayerGame;
 import java.util.ArrayList;
 import java.util.Iterator;

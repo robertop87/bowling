@@ -1,10 +1,10 @@
 package com.alenasoft.application.strategies;
 
-import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
 import com.alenasoft.application.ScoreStrategy;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
+import com.alenasoft.domain.Frame;
 import java.util.List;
 
 class SimpleScoreStrategy implements ScoreStrategy {

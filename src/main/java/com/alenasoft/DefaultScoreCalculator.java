@@ -1,10 +1,10 @@
 package com.alenasoft;
 
-import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.application.strategies.ScoreStrategyProvider;
 import com.alenasoft.commons.GameConstants;
+import com.alenasoft.domain.Frame;
 import com.alenasoft.domain.PlayerGame;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -34,7 +34,7 @@ public class DefaultScoreCalculator implements ScoreCalculator {
       playerGame.setValidGame(Boolean.TRUE);
     } catch (InvalidInputScoreException e) {
       playerGame.setValidGame(Boolean.FALSE);
-      log.error(e.getMessage());
+      log.info(e.getMessage());
     }
   }
 
