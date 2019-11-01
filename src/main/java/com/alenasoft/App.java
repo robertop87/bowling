@@ -13,7 +13,8 @@ public class App {
 
   public static void main(String[] args) {
     if (args.length <= 0) {
-      System.err.println("Provide a valid path. Example: /home/user/file.txt");
+      log.error("Provide a valid path. Example: /home/user/file.txt");
+      System.exit(-1);
     }
 
     try {
@@ -25,8 +26,10 @@ public class App {
       dataManager.processData();
       System.out.println(dataManager);
     } catch (FileNotFoundException e) {
-      System.err.println(e.getMessage());
+      log.error(e.getMessage());
       System.exit(-1);
+    } finally{
+      System.exit(0);
     }
   }
 }

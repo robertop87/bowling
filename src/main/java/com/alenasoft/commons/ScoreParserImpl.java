@@ -36,7 +36,6 @@ public class ScoreParserImpl implements ScoreParser {
 
   private void fireInvalidInputException(String inputScore) throws InvalidInputScoreException {
     log.error(String.format(warningTemplate, inputScore));
-    System.err.println(String.format(warningTemplate, inputScore));
     throw new InvalidInputScoreException(String.format(warningTemplate, inputScore));
   }
 }

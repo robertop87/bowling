@@ -7,8 +7,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DataManager {
+
+  public static Logger log = LogManager.getLogger();
 
   private List<PlayerGame> playerGames;
 
@@ -18,7 +22,7 @@ public class DataManager {
 
   public void processLine(String nextLine) {
     if (Objects.isNull(nextLine) || nextLine.isEmpty()) {
-      System.out.println("Warning: Empty Line skipped");
+      log.warn("Empty ROW skipped from input data text file");
       return;
     }
 
@@ -31,7 +35,7 @@ public class DataManager {
 
     String[] values = sanitized.split(" ");
     if (values.length < 1 || values.length > 2) {
-      System.err.println(String.format("Invalid row input: [%s] cannot processed", nextLine));
+      log.error(String.format("Invalid row input: [%s] cannot processed", nextLine));
       System.exit(-1);
     }
     this.addOrUpdate(values[0], values[1]);

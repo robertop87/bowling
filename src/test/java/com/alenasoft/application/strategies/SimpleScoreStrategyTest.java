@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
-import com.alenasoft.application.FrameOrganizerImpl;
 import com.alenasoft.application.ScoreStrategy;
 import java.util.Arrays;
 import java.util.List;
