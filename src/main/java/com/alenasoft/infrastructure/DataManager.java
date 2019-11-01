@@ -1,6 +1,7 @@
 package com.alenasoft.infrastructure;
 
 import com.alenasoft.application.PlayerGame;
+import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,10 @@ public class DataManager {
     this.addOrUpdate(values[0], values[1]);
   }
 
-  public void processData() {
-    this.playerGames.forEach(PlayerGame::calculateScores);
+  public void processData() throws InvalidInputScoreException {
+    for (PlayerGame playerGame : this.playerGames) {
+      playerGame.calculateScores();
+    }
   }
 
   @Override
@@ -66,8 +69,13 @@ public class DataManager {
         this.findByPlayerName(playerName)
             .orElseGet(
                 () -> {
-                  PlayerGame newPlayerGame = new PlayerGame(playerName);
-                  this.playerGames.add(newPlayerGame);
+                  PlayerGame newPlayerGame = null;
+                  try {
+                    newPlayerGame = new PlayerGame(playerName);
+                    this.playerGames.add(newPlayerGame);
+                  } catch (InvalidInputScoreException e) {
+                    log.error(e.getMessage());
+                  }
                   return newPlayerGame;
                 });
     playerGame.getInputScores().add(inputPoint);

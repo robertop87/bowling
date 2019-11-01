@@ -6,31 +6,32 @@ import com.alenasoft.commons.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class PlayerGame {
+
+  public static Logger log = LogManager.getLogger();
+
+  public static final String invalidNumberOfAttemptsTemplate = "Invalid Number of Attempts [%d] for [%s] player";
 
   private final FrameOrganizer frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
   private final String name;
   private final List<String> inputScores;
   private List<Frame> frames;
 
-  public PlayerGame(String name) {
+  public PlayerGame(String name) throws InvalidInputScoreException {
     this(name, new ArrayList<>());
   }
 
-  public PlayerGame(String name, List<String> inputScores) {
+  public PlayerGame(String name, List<String> inputScores) throws InvalidInputScoreException {
     this.name = name;
     this.inputScores = inputScores;
     this.calculateScores();
   }
 
-  public void calculateScores() {
-    try {
-      this.frames = this.frameOrganizer.organize(this.inputScores);
-    } catch (InvalidInputScoreException e) {
-      this.frames.forEach(f -> f.setScore(GameConstants.minPinfall));
-    }
-
+  public void calculateScores() throws InvalidInputScoreException {
+    this.frames = this.frameOrganizer.organize(this.inputScores);
     this.computeScore();
   }
 
@@ -73,20 +74,18 @@ public class PlayerGame {
 
   @Override
   public String toString() {
-    String nameWithTag = this.name.concat(!this.isValid() ? " [Invalid Game]" : "");
-    return String.join("\n", nameWithTag, this.pinfallsRowToPrint(), this.scoresRowToPrint());
+    return String.join("\n", this.pinfallsRowToPrint(), this.scoresRowToPrint());
   }
 
-  public boolean isValid() {
-    return this.frames.size() == GameConstants.maxFramesLength;
-  }
-
-  public void computeScore() {
-    if (!this.isValid()) {
-      this.frames.forEach(f -> f.setScore(GameConstants.minPinfall));
-      return;
+  public void validateAttempts() throws InvalidInputScoreException {
+    if (this.frames.size() != GameConstants.maxFramesLength) {
+      throw new InvalidInputScoreException(
+          String.format(invalidNumberOfAttemptsTemplate, this.frames.size(), this.name));
     }
+  }
 
+  public void computeScore() throws InvalidInputScoreException {
+    this.validateAttempts();
     this.frames.forEach(f -> ScoreStrategyProvider.provideFor(f).score(f.getIndex(), this.frames));
   }
 }
