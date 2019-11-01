@@ -139,31 +139,22 @@ Zero 0
 #### Expected output
 
 ```
-Frame		    1		    2		    3		    4		    5		    6		    7		    8		    9		   10		
+Frame		1		2		3		4		5		6		7		8		9		10
 JEFF
-Pinfalls	   X		 7 /		 9 0		   X		 0 8		 8 /		 F 6		   X		   X		 X 8 1
-Score		   20		   39		   48		   66		   74		   84		   90		  120		  148		  167
+Pinfalls		X	7	/	9	0		X	0	8	8	/	F	6		X		X	X	8	1
+Score		20		39		48		66		74		84		90		120		148		167
 JOHN
-Pinfalls	 3 /		 6 3		   X		 8 1		   X		   X		 9 0		 7 /		 4 4		 X 9 0
-Score		   16		   25		   44		   53		   82		  101		  110		  124		  132		  151
+Pinfalls	3	/	6	3		X	8	1		X		X	9	0	7	/	4	4	X	9	0
+Score		16		25		44		53		82		101		110		124		132		151
 CARL
-Pinfalls	   X		   X		   X		   X		   X		   X		   X		   X		   X		 X X X
-Score		   30		   60		   90		  120		  150		  180		  210		  240		  270		  300
+Pinfalls		X		X		X		X		X		X		X		X		X	X	X	X
+Score		30		60		90		120		150		180		210		240		270		300
 FAILED
-Pinfalls	 F F		 F F		 F F		 F F		 F F		 F F		 F F		 F F		 F F		 F F F
-Score		    0		    0		    0		    0		    0		    0		    0		    0		    0		    0
+Pinfalls	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F	F
+Score		0		0		0		0		0		0		0		0		0		0
 ZERO
-Pinfalls	 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0		 0 0 0
-Score		    0		    0		    0		    0		    0		    0		    0		    0		    0		    0
-INCOMPLETE [Invalid Game]
-Pinfalls	   X		 F 8		 6 /
-Score		    0		    0		    0
-BIGGER [Invalid Game]
-Pinfalls	
-Score		
-SMALLER [Invalid Game]
-Pinfalls	
-Score		
+Pinfalls	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+Score		0		0		0		0		0		0		0		0		0		0
 
 ```
 
