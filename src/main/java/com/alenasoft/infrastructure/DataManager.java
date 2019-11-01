@@ -23,7 +23,7 @@ public class DataManager {
 
   public void processLine(String nextLine) {
     if (Objects.isNull(nextLine) || nextLine.isEmpty()) {
-      log.warn("Empty ROW skipped from input data text file");
+      log.info("Empty ROW skipped from input data text file");
       return;
     }
 

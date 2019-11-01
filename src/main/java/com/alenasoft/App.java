@@ -14,7 +14,7 @@ public class App {
 
   public static void main(String[] args) {
     if (args.length <= 0) {
-      log.error("Provide a valid path. Example: /home/user/file.txt");
+      log.info("Provide a valid path. Example: /home/user/file.txt");
       System.exit(-1);
     }
 
