@@ -1,6 +1,8 @@
 package com.alenasoft;
 
 import com.alenasoft.infrastructure.DataManager;
+import com.alenasoft.infrastructure.DataReader;
+import com.alenasoft.infrastructure.DataReaderFromScanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -19,11 +21,9 @@ public class App {
 
     try {
       Scanner fileScanner = new Scanner(new File(args[0]));
+      DataReader dataReader = new DataReaderFromScanner();
       DataManager dataManager = new DataManager();
-      while (fileScanner.hasNext()) {
-        dataManager.processLine(fileScanner.nextLine());
-      }
-      dataManager.processData();
+      dataManager.processData(dataReader.readPlayerGames(fileScanner));
       System.out.println(dataManager);
     } catch (FileNotFoundException e) {
       log.error(e.getMessage());
