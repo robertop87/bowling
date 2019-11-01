@@ -2,10 +2,10 @@ package com.alenasoft;
 
 import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
-import com.alenasoft.application.PlayerGame;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.application.strategies.ScoreStrategyProvider;
 import com.alenasoft.commons.GameConstants;
+import com.alenasoft.domain.PlayerGame;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

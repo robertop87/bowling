@@ -1,9 +1,9 @@
 package com.alenasoft;
 
 import com.alenasoft.application.Frame;
-import com.alenasoft.application.PlayerGame;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
+import com.alenasoft.domain.PlayerGame;
 import java.util.List;
 import java.util.stream.Collectors;
 

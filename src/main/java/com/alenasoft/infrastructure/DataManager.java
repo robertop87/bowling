@@ -1,7 +1,7 @@
 package com.alenasoft.infrastructure;
 
 import com.alenasoft.ScoreCalculator;
-import com.alenasoft.application.PlayerGame;
+import com.alenasoft.domain.PlayerGame;
 import java.util.ArrayList;
 import java.util.List;
 

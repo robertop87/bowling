@@ -1,6 +1,6 @@
 package com.alenasoft.infrastructure;
 
-import com.alenasoft.application.PlayerGame;
+import com.alenasoft.domain.PlayerGame;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

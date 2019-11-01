@@ -2,6 +2,7 @@ package com.alenasoft.application;
 
 import com.alenasoft.application.exceptions.FrameNotExistsException;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.domain.PlayerGame;
 import java.util.List;
 
 public interface FrameOrganizer {

@@ -1,5 +1,6 @@
-package com.alenasoft.application;
+package com.alenasoft.domain;
 
+import com.alenasoft.application.Frame;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -37,15 +38,15 @@ public class PlayerGame {
     return this.frames;
   }
 
+  public boolean isValidGame() {
+    return this.validGame;
+  }
+
   public void setFrames(List<Frame> frames) {
     this.frames = frames;
   }
 
   public void setValidGame(boolean valid) {
     this.validGame = valid;
-  }
-
-  public boolean isValidGame() {
-    return this.validGame;
   }
 }
