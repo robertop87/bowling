@@ -1,7 +1,7 @@
 package com.alenasoft.application;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
-import com.alenasoft.commons.Constants;
+import com.alenasoft.commons.GameConstants;
 import com.alenasoft.commons.ScoreParser;
 import java.util.Arrays;
 
@@ -16,7 +16,7 @@ public class Frame {
   public Frame(int index, String[] stringPoints) {
     this.index = index;
     this.stringPoints = stringPoints;
-    this.score = Constants.minPinfall;
+    this.score = GameConstants.minPinfall;
     this.points =
         Arrays.stream(this.stringPoints)
             .mapToInt(
@@ -24,10 +24,10 @@ public class Frame {
                   try {
                     return this.scoreParser.parseToNumericScore(p);
                   } catch (InvalidInputScoreException e) {
-                    return Constants.errorValue;
+                    return GameConstants.errorValue;
                   }
                 })
-            .filter(p -> p != Constants.errorValue)
+            .filter(p -> p != GameConstants.errorValue)
             .toArray();
   }
 
@@ -41,19 +41,19 @@ public class Frame {
 
   public String pointsToPrint() throws InvalidInputScoreException {
     if (this.stringPoints.length == 1
-        && this.scoreParser.parseToNumericScore(this.stringPoints[0]) == Constants.strikeValue) {
-      return String.format("%4s", Constants.strike);
+        && this.scoreParser.parseToNumericScore(this.stringPoints[0]) == GameConstants.strikeValue) {
+      return String.format("%4s", GameConstants.strike);
     }
 
-    if (this.stringPoints.length == 2 && this.sumOfPoints() == Constants.maxPinfall) {
-      return String.format("%2s%2s", this.stringPoints[0], Constants.spare);
+    if (this.stringPoints.length == 2 && this.sumOfPoints() == GameConstants.maxPinfall) {
+      return String.format("%2s%2s", this.stringPoints[0], GameConstants.spare);
     }
 
     String pointsAsString = "";
     for (String stringPoint : this.stringPoints) {
-      if (this.scoreParser.parseToNumericScore(stringPoint) == Constants.maxPinfall) {
+      if (this.scoreParser.parseToNumericScore(stringPoint) == GameConstants.maxPinfall) {
         pointsAsString = pointsAsString
-            .concat(String.format("%2s", Constants.strike));
+            .concat(String.format("%2s", GameConstants.strike));
         continue;
       }
 
@@ -78,7 +78,7 @@ public class Frame {
               try {
                 return this.scoreParser.parseToNumericScore(p);
               } catch (InvalidInputScoreException e) {
-                return Constants.errorValue;
+                return GameConstants.errorValue;
               }
             })
         .sum();

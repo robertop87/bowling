@@ -1,7 +1,7 @@
 package com.alenasoft.infrastructure;
 
 import com.alenasoft.application.PlayerGame;
-import com.alenasoft.commons.Constants;
+import com.alenasoft.commons.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -55,7 +55,7 @@ public class DataManager {
 
   private String frameRowToPrint() {
     String headerRow = "Frame\t\t";
-    for (int i = 1; i <= Constants.maxFramesLength; i++) {
+    for (int i = 1; i <= GameConstants.maxFramesLength; i++) {
       headerRow = headerRow.concat(String.format("%5d\t\t", i));
     }
     return headerRow;

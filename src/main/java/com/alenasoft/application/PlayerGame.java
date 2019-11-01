@@ -2,7 +2,7 @@ package com.alenasoft.application;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.application.strategies.ScoreStrategyProvider;
-import com.alenasoft.commons.Constants;
+import com.alenasoft.commons.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,7 +28,7 @@ public class PlayerGame {
     try {
       this.frames = this.frameOrganizer.organize(this.inputScores);
     } catch (InvalidInputScoreException e) {
-      this.frames.forEach(f -> f.setScore(Constants.minPinfall));
+      this.frames.forEach(f -> f.setScore(GameConstants.minPinfall));
     }
 
     this.computeScore();
@@ -78,12 +78,12 @@ public class PlayerGame {
   }
 
   public boolean isValid() {
-    return this.frames.size() == Constants.maxFramesLength;
+    return this.frames.size() == GameConstants.maxFramesLength;
   }
 
   public void computeScore() {
     if (!this.isValid()) {
-      this.frames.forEach(f -> f.setScore(Constants.minPinfall));
+      this.frames.forEach(f -> f.setScore(GameConstants.minPinfall));
       return;
     }
 

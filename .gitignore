@@ -8,3 +8,4 @@ log/
 target/
 .mvn/
 dependency-reduced-pom.xml
+logfile.log

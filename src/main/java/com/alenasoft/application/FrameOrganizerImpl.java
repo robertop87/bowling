@@ -1,7 +1,7 @@
 package com.alenasoft.application;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
-import com.alenasoft.commons.Constants;
+import com.alenasoft.commons.GameConstants;
 import com.alenasoft.commons.ScoreParser;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -22,14 +22,14 @@ public class FrameOrganizerImpl implements FrameOrganizer {
       String currentInput = iterator.next();
       int currentValue = this.scoreParser.parseToNumericScore(currentInput);
 
-      if (currentValue == Constants.strikeValue && index != Constants.maxFramesLength) {
+      if (currentValue == GameConstants.strikeValue && index != GameConstants.maxFramesLength) {
         String[] points = {currentInput};
         frames.add(new Frame(index, points));
         index++;
         continue;
       }
 
-      if (index != Constants.maxFramesLength) {
+      if (index != GameConstants.maxFramesLength) {
         String[] points = {currentInput, iterator.next()};
         frames.add(new Frame(index, points));
         index++;

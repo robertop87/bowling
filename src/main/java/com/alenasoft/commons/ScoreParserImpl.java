@@ -14,24 +14,24 @@ public class ScoreParserImpl implements ScoreParser {
       throws InvalidInputScoreException {
     if (Objects.isNull(inputScore)) {
       fireInvalidInputException("null");
-      return Constants.minPinfall;
+      return GameConstants.minPinfall;
     }
 
     final String sanitizedInputScore = inputScore.trim().toUpperCase();
-    if (Constants.faultChar.equals(sanitizedInputScore)) {
-      return Constants.minPinfall;
+    if (GameConstants.fault.equals(sanitizedInputScore)) {
+      return GameConstants.minPinfall;
     }
 
     try {
       final int score = Integer.parseInt(sanitizedInputScore);
-      if (score < Constants.minPinfall || score > Constants.maxPinfall) {
+      if (score < GameConstants.minPinfall || score > GameConstants.maxPinfall) {
         fireInvalidInputException(sanitizedInputScore);
       }
       return score;
     } catch (NumberFormatException exception) {
       fireInvalidInputException(sanitizedInputScore);
     }
-    return Constants.minPinfall;
+    return GameConstants.minPinfall;
   }
 
   private void fireInvalidInputException(String inputScore) throws InvalidInputScoreException {
