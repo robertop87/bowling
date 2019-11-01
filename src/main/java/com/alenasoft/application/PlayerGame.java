@@ -5,7 +5,6 @@ import com.alenasoft.application.strategies.ScoreStrategyProvider;
 import com.alenasoft.commons.GameConstants;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,7 +36,7 @@ public class PlayerGame {
       this.validGame = Boolean.TRUE;
     } catch (InvalidInputScoreException e) {
       this.validGame = Boolean.FALSE;
-      //log.error(e.getMessage());
+      log.error(e.getMessage());
     }
   }
 
@@ -49,42 +48,8 @@ public class PlayerGame {
     return this.name;
   }
 
-  private String pinfallsRowToPrint() {
-    String rowName = "Pinfalls";
-    String framePoints =
-        this.frames
-            .stream()
-            .map(
-                f -> {
-                  try {
-                    return f.pointsToPrint();
-                  } catch (InvalidInputScoreException e) {
-                    return "Invalid points detected";
-                  }
-                })
-            .collect(Collectors.joining(""));
-
-    return String.join("\t", rowName, framePoints);
-  }
-
-  private String scoresRowToPrint() {
-    String rowName = "Score";
-    String frameScores =
-        this.frames
-            .stream()
-            .map(f -> String.format("%d", f.getScore()))
-            .collect(Collectors.joining("\t\t"));
-
-    return String.join("\t\t", rowName, frameScores);
-  }
-
-  @Override
-  public String toString() {
-    if (!this.validGame) {
-      return String.format("[%s does not have a valid game]", this.name);
-    }
-
-    return String.join("\n", this.name, this.pinfallsRowToPrint(), this.scoresRowToPrint());
+  public List<Frame> getFrames() {
+    return this.frames;
   }
 
   public void validateAttempts() throws InvalidInputScoreException {
