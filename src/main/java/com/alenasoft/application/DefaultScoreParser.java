@@ -1,11 +1,12 @@
-package com.alenasoft.commons;
+package com.alenasoft.application;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
+import com.alenasoft.commons.GameConstants;
 import java.util.Objects;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ScoreParserImpl implements ScoreParser {
+public class DefaultScoreParser implements ScoreParser {
 
   private static final Logger log = LogManager.getLogger();
 

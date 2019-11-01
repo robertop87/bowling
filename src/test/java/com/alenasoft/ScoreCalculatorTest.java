@@ -3,6 +3,7 @@ package com.alenasoft;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import com.alenasoft.application.ScoreCalculator;
 import com.alenasoft.domain.PlayerGame;
 import java.util.Arrays;
 import java.util.List;

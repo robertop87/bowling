@@ -2,7 +2,7 @@ package com.alenasoft.domain;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
-import com.alenasoft.commons.ScoreParser;
+import com.alenasoft.application.ScoreParser;
 import java.util.Arrays;
 
 public class Frame {

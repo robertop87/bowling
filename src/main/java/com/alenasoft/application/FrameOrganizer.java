@@ -19,6 +19,6 @@ public interface FrameOrganizer {
   }
 
   static FrameOrganizer defaultFrameOrganizer() {
-    return new FrameOrganizerImpl();
+    return new DefaultFrameOrganizer();
   }
 }

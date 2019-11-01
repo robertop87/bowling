@@ -3,8 +3,8 @@ package com.alenasoft;
 import static org.junit.Assert.assertEquals;
 
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
-import com.alenasoft.commons.ScoreParser;
-import com.alenasoft.commons.ScoreParserImpl;
+import com.alenasoft.application.ScoreParser;
+import com.alenasoft.application.DefaultScoreParser;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class ScoreParserTest {
 
   @Before
   public void setUp() {
-    this.scoreParser = new ScoreParserImpl();
+    this.scoreParser = new DefaultScoreParser();
   }
 
   @Test

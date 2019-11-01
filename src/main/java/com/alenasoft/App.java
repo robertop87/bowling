@@ -1,8 +1,10 @@
 package com.alenasoft;
 
+import com.alenasoft.infrastructure.ConsoleOutputPrinter;
 import com.alenasoft.infrastructure.DataManager;
 import com.alenasoft.infrastructure.DataReader;
 import com.alenasoft.infrastructure.DataReaderFromScanner;
+import com.alenasoft.infrastructure.OutputPrinter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
