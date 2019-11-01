@@ -24,7 +24,8 @@ public class App {
       DataReader dataReader = new DataReaderFromScanner();
       DataManager dataManager = new DataManager();
       dataManager.processData(dataReader.readPlayerGames(fileScanner));
-      System.out.println(dataManager);
+      OutputPrinter outputPrinter = new ConsoleOutputPrinter();
+      outputPrinter.print(dataManager.getPlayerGames());
     } catch (FileNotFoundException e) {
       log.error(e.getMessage());
       System.exit(-1);
