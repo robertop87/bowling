@@ -7,9 +7,17 @@ import com.alenasoft.application.FrameOrganizer;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Before;
 import org.junit.Test;
 
 public class FrameOrganizerTest {
+
+  private FrameOrganizer frameOrganizer;
+
+  @Before
+  public void setUp() {
+    this.frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
+  }
 
   @Test
   public void testOrganizeScoresForJeffCase()
@@ -20,7 +28,7 @@ public class FrameOrganizerTest {
             "10", "0", "8", "8", "2", "F", "6",
             "10", "10", "10", "8", "1");
 
-    final List<Frame> frames = FrameOrganizer.organize(inputPoints);
+    final List<Frame> frames = this.frameOrganizer.organize(inputPoints);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());
@@ -42,7 +50,7 @@ public class FrameOrganizerTest {
     List<String> inputPoints =
         Arrays.asList("3", "7", "6", "3", "10", "8", "1", "10", "10", "9", "0", "7", "3", "4", "4", "10", "9", "0");
 
-    final List<Frame> frames = FrameOrganizer.organize(inputPoints);
+    final List<Frame> frames = this.frameOrganizer.organize(inputPoints);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());
@@ -63,7 +71,7 @@ public class FrameOrganizerTest {
     List<String> inputPoints =
         Arrays.asList("10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10");
 
-    final List<Frame> frames = FrameOrganizer.organize(inputPoints);
+    final List<Frame> frames = this.frameOrganizer.organize(inputPoints);
 
     // Maximum number of frames should be 10
     assertEquals(10, frames.size());

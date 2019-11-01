@@ -8,14 +8,16 @@ import java.util.List;
 
 class SimpleScoreStrategy implements ScoreStrategy {
 
+  private final FrameOrganizer frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
+
   @Override
   public void score(int frameIndex, List<Frame> frames) {
     int score =
         (frameIndex == 1)
             ? Constants.minPinfall
-            : FrameOrganizer.getByIndex(frameIndex - 1, frames).getScore();
+            : this.frameOrganizer.getByIndex(frameIndex - 1, frames).getScore();
 
-    Frame currentFrame = FrameOrganizer.getByIndex(frameIndex, frames);
+    Frame currentFrame = this.frameOrganizer.getByIndex(frameIndex, frames);
     score += currentFrame.sumOfPoints();
 
     currentFrame.setScore(score);

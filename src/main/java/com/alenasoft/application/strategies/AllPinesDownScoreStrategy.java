@@ -8,6 +8,7 @@ import java.util.List;
 
 class AllPinesDownScoreStrategy implements ScoreStrategy {
 
+  private final FrameOrganizer frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
   private int nextPointSize;
 
   public AllPinesDownScoreStrategy(int nextPointSize) {
@@ -19,16 +20,16 @@ class AllPinesDownScoreStrategy implements ScoreStrategy {
     int score =
         (frameIndex == 1)
             ? Constants.minPinfall
-            : FrameOrganizer.getByIndex(frameIndex - 1, frames).getScore();
+            : this.frameOrganizer.getByIndex(frameIndex - 1, frames).getScore();
 
-    Frame currentFrame = FrameOrganizer.getByIndex(frameIndex, frames);
+    Frame currentFrame = this.frameOrganizer.getByIndex(frameIndex, frames);
     score += currentFrame.sumOfPoints();
 
     int nextValueCounter = 0;
     int nextFrameDistance = 1;
 
     while (nextValueCounter < this.nextPointSize) {
-      final Frame nextFrame = FrameOrganizer.getByIndex(frameIndex + nextFrameDistance, frames);
+      final Frame nextFrame = this.frameOrganizer.getByIndex(frameIndex + nextFrameDistance, frames);
       final int pointSize = nextFrame.getPoints().length;
       nextFrameDistance++;
 

@@ -4,12 +4,21 @@ import static org.junit.Assert.assertEquals;
 
 import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
+import com.alenasoft.application.FrameOrganizerImpl;
 import com.alenasoft.application.ScoreStrategy;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.Before;
 import org.junit.Test;
 
 public class SimpleScoreStrategyTest {
+
+  private FrameOrganizer frameOrganizer;
+
+  @Before
+  public void setUp() {
+    this.frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
+  }
 
   @Test
   public void testStrikeScoreForThirdFrameJeffCase() {
@@ -22,7 +31,7 @@ public class SimpleScoreStrategyTest {
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(48, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(48, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -36,7 +45,7 @@ public class SimpleScoreStrategyTest {
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(74, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(74, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -50,7 +59,7 @@ public class SimpleScoreStrategyTest {
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(90, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(90, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -64,7 +73,7 @@ public class SimpleScoreStrategyTest {
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(167, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(167, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -78,6 +87,6 @@ public class SimpleScoreStrategyTest {
 
     ScoreStrategy strategy = new SimpleScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(151, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(151, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 }

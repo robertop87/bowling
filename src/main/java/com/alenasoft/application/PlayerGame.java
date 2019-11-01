@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PlayerGame {
+
+  private final FrameOrganizer frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
   private final String name;
   private final List<String> inputScores;
   private List<Frame> frames;
@@ -24,7 +26,7 @@ public class PlayerGame {
 
   public void calculateScores() {
     try {
-      this.frames = FrameOrganizer.organize(this.inputScores);
+      this.frames = this.frameOrganizer.organize(this.inputScores);
     } catch (InvalidInputScoreException e) {
       this.frames.forEach(f -> f.setScore(Constants.minPinfall));
     }

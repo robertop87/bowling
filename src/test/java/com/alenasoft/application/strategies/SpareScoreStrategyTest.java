@@ -8,9 +8,17 @@ import com.alenasoft.application.ScoreStrategy;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class SpareScoreStrategyTest {
+
+  private FrameOrganizer frameOrganizer;
+
+  @Before
+  public void setUp() {
+    this.frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
+  }
 
   @Test
   public void testStrikeScoreForFirstFrameJohnCase() {
@@ -22,7 +30,7 @@ public class SpareScoreStrategyTest {
 
     ScoreStrategy strategy = new SpareScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    Assert.assertEquals(16, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    Assert.assertEquals(16, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -37,7 +45,7 @@ public class SpareScoreStrategyTest {
 
     ScoreStrategy strategy = new SpareScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(124, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(124, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -52,7 +60,7 @@ public class SpareScoreStrategyTest {
 
     ScoreStrategy strategy = new SpareScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(39, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(39, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -67,6 +75,6 @@ public class SpareScoreStrategyTest {
 
     ScoreStrategy strategy = new SpareScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(84, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(84, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 }

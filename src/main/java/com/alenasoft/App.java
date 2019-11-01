@@ -4,8 +4,13 @@ import com.alenasoft.infrastructure.DataManager;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class App {
+
+  public static Logger log = LogManager.getLogger();
+
   public static void main(String[] args) {
     if (args.length <= 0) {
       System.err.println("Provide a valid path. Example: /home/user/file.txt");

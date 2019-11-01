@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 public class Frame {
 
+  private final ScoreParser scoreParser = ScoreParser.defaultParser();
   private int index;
   private String[] stringPoints;
   private int[] points;
@@ -21,7 +22,7 @@ public class Frame {
             .mapToInt(
                 p -> {
                   try {
-                    return ScoreParser.parseToNumericScore(p);
+                    return this.scoreParser.parseToNumericScore(p);
                   } catch (InvalidInputScoreException e) {
                     return Constants.errorValue;
                   }
@@ -40,7 +41,7 @@ public class Frame {
 
   public String pointsToPrint() throws InvalidInputScoreException {
     if (this.stringPoints.length == 1
-        && ScoreParser.parseToNumericScore(this.stringPoints[0]) == Constants.strikeValue) {
+        && this.scoreParser.parseToNumericScore(this.stringPoints[0]) == Constants.strikeValue) {
       return String.format("%4s", Constants.strike);
     }
 
@@ -50,7 +51,7 @@ public class Frame {
 
     String pointsAsString = "";
     for (String stringPoint : this.stringPoints) {
-      if (ScoreParser.parseToNumericScore(stringPoint) == Constants.maxPinfall) {
+      if (this.scoreParser.parseToNumericScore(stringPoint) == Constants.maxPinfall) {
         pointsAsString = pointsAsString
             .concat(String.format("%2s", Constants.strike));
         continue;
@@ -75,7 +76,7 @@ public class Frame {
         .mapToInt(
             p -> {
               try {
-                return ScoreParser.parseToNumericScore(p);
+                return this.scoreParser.parseToNumericScore(p);
               } catch (InvalidInputScoreException e) {
                 return Constants.errorValue;
               }

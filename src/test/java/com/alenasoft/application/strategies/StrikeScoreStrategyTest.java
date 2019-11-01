@@ -8,9 +8,17 @@ import com.alenasoft.application.ScoreStrategy;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class StrikeScoreStrategyTest {
+
+  private FrameOrganizer frameOrganizer;
+
+  @Before
+  public void setUp() {
+    this.frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
+  }
 
   @Test
   public void testStrikeScoreForFirstFrame() {
@@ -22,7 +30,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    Assert.assertEquals(20, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    Assert.assertEquals(20, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -37,7 +45,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(66, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(66, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -53,7 +61,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(120, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(120, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -68,7 +76,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(148, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(148, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -83,7 +91,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(44, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(44, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -99,7 +107,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(82, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(82, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -114,7 +122,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(101, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(101, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -127,7 +135,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(30, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(30, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -143,7 +151,7 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(150, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(150, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 
   @Test
@@ -158,6 +166,6 @@ public class StrikeScoreStrategyTest {
 
     ScoreStrategy strategy = new StrikeScoreStrategy();
     strategy.score(targetFrameIndex, frames);
-    assertEquals(270, FrameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
+    assertEquals(270, this.frameOrganizer.getByIndex(targetFrameIndex, frames).getScore());
   }
 }
