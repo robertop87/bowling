@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
 import com.alenasoft.application.ScoreStrategy;
+import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
@@ -21,7 +22,8 @@ public class SpareScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForFirstFrameJohnCase() {
+  public void testStrikeScoreForFirstFrameJohnCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 1;
     List<Frame> frames = Arrays.asList(
         new Frame(targetFrameIndex, new String[] { "3", "7" }),
@@ -34,7 +36,8 @@ public class SpareScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForEighthFrameJohnCase() {
+  public void testStrikeScoreForEighthFrameJohnCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 8;
     Frame previousFrame = new Frame(7, new String[] { "9", "0" });
     previousFrame.setScore(110);
@@ -49,7 +52,8 @@ public class SpareScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForSecondFrameJeffCase() {
+  public void testStrikeScoreForSecondFrameJeffCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 2;
     Frame previousFrame = new Frame(1, new String[] { "10" });
     previousFrame.setScore(20);
@@ -64,7 +68,8 @@ public class SpareScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForSixthFrameJeffCase() {
+  public void testStrikeScoreForSixthFrameJeffCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 6;
     Frame previousFrame = new Frame(5, new String[] { "0", "8" });
     previousFrame.setScore(74);

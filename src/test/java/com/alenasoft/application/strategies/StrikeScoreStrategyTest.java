@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import com.alenasoft.application.Frame;
 import com.alenasoft.application.FrameOrganizer;
 import com.alenasoft.application.ScoreStrategy;
+import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
@@ -21,7 +22,7 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForFirstFrame() {
+  public void testStrikeScoreForFirstFrame() throws InvalidInputScoreException {
     int targetFrameIndex = 1;
     List<Frame> frames = Arrays.asList(
         new Frame(targetFrameIndex, new String[] { "10" }),
@@ -34,7 +35,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForFourthFrameJeffCase() {
+  public void testStrikeScoreForFourthFrameJeffCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 4;
     Frame previousFrame = new Frame(3, new String[] { "9", "0" });
     previousFrame.setScore(48);
@@ -49,7 +51,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForEighthFrameJeffCase() {
+  public void testStrikeScoreForEighthFrameJeffCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 8;
     Frame previousFrame = new Frame(7, new String[] { "0", "6" });
     previousFrame.setScore(90);
@@ -65,7 +68,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForNinethFrameJeffCase() {
+  public void testStrikeScoreForNinethFrameJeffCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 9;
     Frame previousFrame = new Frame(8, new String[] { "10" });
     previousFrame.setScore(120);
@@ -80,7 +84,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForThirdFrameJohnCase() {
+  public void testStrikeScoreForThirdFrameJohnCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 3;
     Frame previousFrame = new Frame(2, new String[] { "6", "3" });
     previousFrame.setScore(25);
@@ -95,7 +100,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForFifthFrameJohnCase() {
+  public void testStrikeScoreForFifthFrameJohnCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 5;
     Frame previousFrame = new Frame(4, new String[] { "8", "1" });
     previousFrame.setScore(53);
@@ -111,7 +117,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForSixthFrameJohnCase() {
+  public void testStrikeScoreForSixthFrameJohnCase()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 6;
     Frame previousFrame = new Frame(5, new String[] { "10" });
     previousFrame.setScore(82);
@@ -126,7 +133,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForFirstFrameOnPerfectGame() {
+  public void testStrikeScoreForFirstFrameOnPerfectGame()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 1;
     List<Frame> frames = Arrays.asList(
         new Frame(targetFrameIndex, new String[] { "10" }),
@@ -139,7 +147,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForFifthFrameOnPerfect() {
+  public void testStrikeScoreForFifthFrameOnPerfect()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 5;
     Frame previousFrame = new Frame(4, new String[] { "10" });
     previousFrame.setScore(120);
@@ -155,7 +164,8 @@ public class StrikeScoreStrategyTest {
   }
 
   @Test
-  public void testStrikeScoreForNinethFrameOnPerfect() {
+  public void testStrikeScoreForNinethFrameOnPerfect()
+      throws InvalidInputScoreException {
     int targetFrameIndex = 9;
     Frame previousFrame = new Frame(8, new String[] { "10" });
     previousFrame.setScore(240);

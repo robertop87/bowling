@@ -85,6 +85,8 @@ public class PlayerGame {
 
   private void computeScore() throws InvalidInputScoreException {
     this.validateAttempts();
-    this.frames.forEach(f -> ScoreStrategyProvider.provideFor(f).score(f.getIndex(), this.frames));
+    for (Frame f : this.frames) {
+      ScoreStrategyProvider.provideFor(f).score(f.getIndex(), this.frames);
+    }
   }
 }
