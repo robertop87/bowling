@@ -3,7 +3,10 @@ package com.alenasoft.application;
 import com.alenasoft.application.exceptions.InvalidInputScoreException;
 import com.alenasoft.commons.GameConstants;
 import com.alenasoft.commons.ScoreParser;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Frame {
 
@@ -42,25 +45,21 @@ public class Frame {
   public String pointsToPrint() throws InvalidInputScoreException {
     if (this.stringPoints.length == 1
         && this.scoreParser.parseToNumericScore(this.stringPoints[0]) == GameConstants.strikeValue) {
-      return String.format("%4s", GameConstants.strike);
+      return String.format(this.index == 1 ? "\t%s" : "\t\t%s", GameConstants.strike);
     }
 
     if (this.stringPoints.length == 2 && this.sumOfPoints() == GameConstants.maxPinfall) {
-      return String.format("%2s%2s", this.stringPoints[0], GameConstants.spare);
+      return String.format(this.index == 1 ? "%s\t%s" : "\t%s\t%s", this.stringPoints[0], GameConstants.spare);
     }
 
-    String pointsAsString = "";
+    List<String> maskValues = new ArrayList<>();
+
     for (String stringPoint : this.stringPoints) {
-      if (this.scoreParser.parseToNumericScore(stringPoint) == GameConstants.maxPinfall) {
-        pointsAsString = pointsAsString
-            .concat(String.format("%2s", GameConstants.strike));
-        continue;
-      }
-
-      pointsAsString = pointsAsString.concat(String.format("%2s", stringPoint));
+      maskValues.add(this.scoreParser.parseToNumericScore(stringPoint) == GameConstants.maxPinfall ? GameConstants.strike : stringPoint);
     }
 
-    return pointsAsString;
+    String pointsAsString = maskValues.stream().collect(Collectors.joining("\t"));
+    return this.isFirstFrame() ? pointsAsString : "\t".concat(pointsAsString);
   }
 
   public void setScore(int score) {
@@ -82,5 +81,9 @@ public class Frame {
               }
             })
         .sum();
+  }
+
+  private boolean isFirstFrame() {
+    return this.index == 1;
   }
 }

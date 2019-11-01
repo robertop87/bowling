@@ -55,7 +55,7 @@ public class PlayerGame {
                     return "Invalid points detected";
                   }
                 })
-            .collect(Collectors.joining("\t\t"));
+            .collect(Collectors.joining(""));
 
     return String.join("\t", rowName, framePoints);
   }
@@ -65,7 +65,7 @@ public class PlayerGame {
     String frameScores =
         this.frames
             .stream()
-            .map(f -> String.format("%5d", f.getScore()))
+            .map(f -> String.format("%d", f.getScore()))
             .collect(Collectors.joining("\t\t"));
 
     return String.join("\t\t", rowName, frameScores);
@@ -73,7 +73,7 @@ public class PlayerGame {
 
   @Override
   public String toString() {
-    return String.join("\n", this.pinfallsRowToPrint(), this.scoresRowToPrint());
+    return String.join("\n", this.name, this.pinfallsRowToPrint(), this.scoresRowToPrint());
   }
 
   public void validateAttempts() throws InvalidInputScoreException {

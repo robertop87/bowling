@@ -57,9 +57,9 @@ public class DataManager {
   }
 
   private String frameRowToPrint() {
-    String headerRow = "Frame\t\t";
+    String headerRow = "Frame";
     for (int i = 1; i <= GameConstants.maxFramesLength; i++) {
-      headerRow = headerRow.concat(String.format("%5d\t\t", i));
+      headerRow = headerRow.concat(String.format("\t\t%d", i));
     }
     return headerRow;
   }
