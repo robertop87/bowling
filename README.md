@@ -169,66 +169,34 @@ Score
 
 ### Invalid cases
 
-Test File: bowling-data-tab-separated-invalid.txt
+You can find some invalid test cases on ./invalid
+Example Test File: exceeds-max-value-in-sum.txt
 
 ```
-Incomplete 10
-Incomplete F
-Incomplete 8
-Incomplete 6
-Incomplete 4
-Bigger 20
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 15
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Bigger 0
-Smaller -20
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller -1
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
-Smaller 0
+Jeff 10
+Jeff 8 -- Consecutive sum of values 8 & 6 are invalid
+Jeff 6
+Jeff 9
+Jeff 0
+Jeff 10
+Jeff 0
+Jeff 8
+Jeff 8
+Jeff 2
+Jeff F
+Jeff 6
+Jeff 10
+Jeff 10
+Jeff 10
+Jeff 8
+Jeff 1
+
 ```
 
-#### Expected Output
+#### Examples of Expected Outputs
 
 ```
 ERROR | 2019-11-01 00:49:37 | [main] alenasoft.App (App.java:30) - Invalid Number of Attempts [3] for [INCOMPLETE] player
+
+ERROR | 2019-11-01 01:31:47 | [main] alenasoft.App (App.java:30) - The current sum of points [14] in Frame [2] exceeds the max allowed (10)
 ```
-
-
-## Missing implementations
-
-- Control than sum of chances will no greater than 10
-- If the sum is greater than 10, then invalidate the PlayerGame

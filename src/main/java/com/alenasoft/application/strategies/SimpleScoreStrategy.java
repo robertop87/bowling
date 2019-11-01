@@ -10,7 +10,7 @@ import java.util.List;
 class SimpleScoreStrategy implements ScoreStrategy {
 
   public static final String exceedsMaxScoreTemplate =
-      "The current sum of points [%d] exceeds the max allowed";
+      "The current sum of points [%d] in Frame [%s] exceeds the max allowed (%s)";
   private final FrameOrganizer frameOrganizer = FrameOrganizer.defaultFrameOrganizer();
 
   @Override
@@ -26,7 +26,8 @@ class SimpleScoreStrategy implements ScoreStrategy {
     if (frameIndex != GameConstants.maxFramesLength
         && currentSumOfPoints > GameConstants.maxPinfall) {
       throw new InvalidInputScoreException(
-          String.format(exceedsMaxScoreTemplate, currentSumOfPoints));
+          String.format(
+              exceedsMaxScoreTemplate, currentSumOfPoints, frameIndex, GameConstants.maxPinfall));
     }
 
     score += currentFrame.sumOfPoints();
