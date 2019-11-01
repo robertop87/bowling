@@ -20,14 +20,13 @@ public class PlayerGame {
   private final List<String> inputScores;
   private List<Frame> frames;
 
-  public PlayerGame(String name) throws InvalidInputScoreException {
+  public PlayerGame(String name) {
     this(name, new ArrayList<>());
   }
 
-  public PlayerGame(String name, List<String> inputScores) throws InvalidInputScoreException {
+  public PlayerGame(String name, List<String> inputScores) {
     this.name = name;
     this.inputScores = inputScores;
-    this.calculateScores();
   }
 
   public void calculateScores() throws InvalidInputScoreException {
@@ -84,7 +83,7 @@ public class PlayerGame {
     }
   }
 
-  public void computeScore() throws InvalidInputScoreException {
+  private void computeScore() throws InvalidInputScoreException {
     this.validateAttempts();
     this.frames.forEach(f -> ScoreStrategyProvider.provideFor(f).score(f.getIndex(), this.frames));
   }

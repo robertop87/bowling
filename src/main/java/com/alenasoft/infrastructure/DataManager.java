@@ -69,13 +69,8 @@ public class DataManager {
         this.findByPlayerName(playerName)
             .orElseGet(
                 () -> {
-                  PlayerGame newPlayerGame = null;
-                  try {
-                    newPlayerGame = new PlayerGame(playerName);
-                    this.playerGames.add(newPlayerGame);
-                  } catch (InvalidInputScoreException e) {
-                    log.error(e.getMessage());
-                  }
+                  PlayerGame newPlayerGame = new PlayerGame(playerName);
+                  this.playerGames.add(newPlayerGame);
                   return newPlayerGame;
                 });
     playerGame.getInputScores().add(inputPoint);

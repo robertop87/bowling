@@ -20,6 +20,7 @@ public class PlayerGameTest {
             "10", "10", "10", "8", "1");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", inputScores);
+    playerGame.calculateScores();
 
     final List<String> scores = playerGame.getInputScores();
 
@@ -39,6 +40,7 @@ public class PlayerGameTest {
             "10", "10", "10", "8", "1");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", inputScoresIncompleteGame);
+    playerGame.calculateScores();
   }
 
   @Test(expected = InvalidInputScoreException.class)
@@ -49,6 +51,7 @@ public class PlayerGameTest {
             "10", "10", "10", "8", "1");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", invalidGame);
+    playerGame.calculateScores();
   }
 
   @Test(expected = InvalidInputScoreException.class)
@@ -61,5 +64,6 @@ public class PlayerGameTest {
             "10", "10", "10", "8", "2");
 
     final PlayerGame playerGame = new PlayerGame("Jeff", invalidGame);
+    playerGame.calculateScores();
   }
 }
